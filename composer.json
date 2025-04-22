@@ -1,0 +1,61 @@
+{
+  "name": "o2-shop/o3-theme",
+  "description": "Responsive Theme for O3-Shop",
+  "type": "o3shop-theme",
+  "keywords": [
+        "o3-shop",
+        "themes",
+        "eShop"
+    ],
+    "homepage": "https://www.o3-shop.com/",
+    "license": [
+        "GPL-3.0-only"
+    ],
+  "author": [
+    {
+      "name": "O3-Shop",
+      "email": "info@o3-shop.com",
+      "homepage": "https://www.o3-shop.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "o3-shop/shop-ce": "^1.2"
+  },
+  "extra": {
+    "frontend": {
+      "tools": [
+        "gulp 5.0.0",
+        "bootstrap 5.3.3",
+        "jquery 2.2.4",
+        "splidejs 4.1.4",
+        "postcss-preset-env 10.0.0",
+        "sass 1.77.8"
+      ],
+      "description": "Verwendet Gulp für Build-Prozesse (CSS, JS-Optimierung, PostCSS, Sass, PurgeCSS)"
+    },
+    "oxideshop": {
+      "target-directory": "o3-theme",
+      "assets-directory": "out/o3-theme",
+      "blacklist-filter": [
+          "build/**/*",
+          ".gitignore",
+          ".gitattributes",
+          "CHANGELOG.md",
+          "composer.json",
+          "CONTRIBUTING.md",
+          "Gruntfile.js",
+          "package.json",
+          "package-lock.json"
+      ]
+  }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "echo 'Bitte führen Sie npm install && gulp aus, um die Frontend-Assets zu generieren.'"
+    ],
+    "post-update-cmd": [
+      "echo 'Bitte führen Sie npm install && gulp aus, um die Frontend-Assets zu aktualisieren.'"
+    ]
+  }
+}
