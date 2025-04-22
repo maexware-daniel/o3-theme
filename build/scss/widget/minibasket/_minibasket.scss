@@ -1,0 +1,114 @@
+.component__basketarticle {
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid rgba(17, 34, 17, 0.133333);
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+
+    &:last-of-type {
+        border-bottom: unset;
+        padding-bottom: unset;
+    }
+
+    img {
+        width: 74px;
+        height: 74px;
+        object-fit: scale-down;
+    }
+}
+
+.component__basketarticle-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.component__basketarticle-title {
+    width: calc(100% - 44px);
+}
+
+.component__basketarticle-remove {
+    margin-right: calc(var(--bs-btn-padding-x) * -1);
+    margin-top: calc(var(--bs-btn-padding-y) * -1);
+}
+
+.component__basketarticle-details {
+    display: none;
+
+    @include media-breakpoint-up(md) {
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+        color: $input-placeholder-color;
+
+        span {
+            &:after {
+                content: '/';
+                margin: 0 10px;
+            }
+
+            &:last-of-type {
+                &:after {
+                    content: '';
+                }
+            }
+        }
+    }
+}
+
+.component__basketarticle-price {
+    display: flex;
+    align-self: center;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-left: 2rem;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.offcanvas__basket-articles {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.offcanvas__basket-costs {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: $secondary;
+    padding: calc(var(--bs-offcanvas-padding-x) * 2) calc(var(--bs-offcanvas-padding-x) * 2);
+    margin: 0 calc(var(--bs-offcanvas-padding-x) * -2);
+
+    & > * {
+        width: 50%;
+        font-weight: 600;
+        font-size: 1.25rem;
+
+        &:nth-child(2) {
+            text-align: right;
+            color: var(--bs-primary);
+            font-size: 1rem;
+        }
+    }
+}
+
+.offcanvas__basket-navigation {
+    display: flex;
+    gap: var(--bs-offcanvas-padding-x);
+    margin: var(--bs-offcanvas-padding-y) 0;
+
+    & > * {
+        flex: 1;
+    }
+}
+
+.offcanvas__basket-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}

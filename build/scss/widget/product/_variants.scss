@@ -1,0 +1,11 @@
+.details__variants {
+    label {
+        color: $input-placeholder-color;
+    }
+
+    & + .details__price {
+        .details__price-old:empty {
+            display: none;
+        }
+    }
+}

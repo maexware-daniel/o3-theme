@@ -1,0 +1,100 @@
+@import 'inc/payments';
+@import 'inc/steps';
+
+.order {
+    @include media-breakpoint-up(md) {
+        display: grid;
+        grid-template-columns: 50% auto 44%;
+        grid-template-rows: min-content min-content min-content min-content min-content min-content min-content 1fr;
+        grid-template-areas:
+        "steps           . summary"
+        "billingaddress  . summary"
+        "shippingaddress . summary"
+        "delivery        . summary"
+        "payment         . summary"
+        "message         . summary"
+        "articles        . summary"
+        "agb             . summary"
+        "navi            . summary";
+    }
+
+    @include media-breakpoint-up(lg) {
+        grid-template-columns: 28% 4% 28% auto 34%;
+        grid-template-rows: min-content min-content min-content min-content min-content 1fr;
+        grid-template-areas:
+        "steps          steps    steps           . summary"
+        "billingaddress .        shippingaddress . summary"
+        "delivery       .        payment         . summary"
+        "message        message  message         . summary"
+        "articles       articles articles        . summary"
+        "agb            agb      agb             . summary"
+        "navi           navi     navi            . summary";
+    }
+
+    .basket__summary {
+        @include media-breakpoint-up(md) {
+            position: sticky;
+            top: 40px;
+        }
+    }
+}
+
+.component__steps {
+    grid-area: steps;
+}
+
+.order__billingaddress {
+    grid-area: billingaddress;
+    margin-bottom: 4rem;
+}
+
+.order__shippingaddress {
+    grid-area: shippingaddress;
+    margin-bottom: 4rem;
+}
+
+.order__delivery {
+    grid-area: delivery;
+    margin-bottom: 4rem;
+}
+
+.order__payment {
+    grid-area: payment;
+    margin-bottom: 4rem;
+}
+
+.order__message {
+    grid-area: message;
+    margin-bottom: 4rem;
+}
+
+.order__articles {
+    grid-area: articles;
+    margin-bottom: 2rem;
+}
+
+.order__agb {
+    grid-area: agb;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+
+    @include media-breakpoint-up(md) {
+        margin-top: unset;
+    }
+
+    a {
+        text-decoration-line: underline;
+        text-decoration-style: dashed;
+    }
+}
+
+.order__navi {
+    grid-area: navi;
+
+    .btn {
+        width: 100%;
+        height: 74px;
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+}

@@ -1,0 +1,16 @@
+.dropdown-toggle {
+    &:after {
+        width: 6px;
+        height: 6px;
+        border-top-width: 1px;
+        border-right-width: 1px;
+        border-style: solid;
+        border-color: $body-color;
+        border-left: none;
+        transform: rotate(135deg);
+
+        .header__topinfo & {
+            border-color: $white;
+        }
+    }
+}

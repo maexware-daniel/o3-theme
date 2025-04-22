@@ -1,0 +1,99 @@
+.payment {
+    @include media-breakpoint-up(md) {
+        display: grid;
+        grid-template-columns: 50% auto 44%;
+        grid-template-rows: min-content min-content min-content 1fr;
+        grid-template-areas:
+        "steps    . summary"
+        "delivery . summary"
+        "payments . summary"
+        "navi     . summary";
+    }
+
+    @include media-breakpoint-up(lg) {
+        grid-template-columns: 60% auto 34%;
+    }
+
+    .basket__summary {
+        display: none;
+
+        @include media-breakpoint-up(md) {
+            display: flex;
+        }
+    }
+}
+
+.component__steps {
+    grid-area: steps;
+}
+
+.payment__delivery {
+    grid-area: delivery;
+    margin-bottom: 40px;
+}
+
+.payment__payments {
+    grid-area: payments;
+
+    .form-check {
+        &:nth-last-of-type(2) {
+            border-bottom-width: 1px;
+            margin-bottom: 3rem;
+        }
+    }
+}
+
+.payment__navi {
+    grid-area: navi;
+    display: flex;
+    justify-content: space-between;
+}
+
+.payment__delivery, .payment__payments {
+
+    .form-check {
+        border-style: solid;
+        border-color: #DBDBDB;
+        border-top-width: 1px;
+        border-left-width: 1px;
+        border-right-width: 1px;
+        border-bottom-width: 0;
+        padding-left: 0;
+        position: relative;
+        margin: 0;
+
+        &:last-of-type {
+            border-bottom-width: 1px;
+        }
+    }
+
+    .form-check-label {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 20px 15px 20px 50px;
+
+        span {
+            font-weight: 600;
+            width: 100%;
+
+            &.desc {
+                font-weight: 400;
+                color: $input-placeholder-color;
+                margin-top: 8px;
+            }
+        }
+    }
+
+    .form-check-input {
+        position: absolute;
+        left: 35px;
+        top: 16px;
+
+        &:checked {
+            & + .form-check-label {
+                background-color: $secondary;
+            }
+        }
+    }
+}

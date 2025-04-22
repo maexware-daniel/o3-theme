@@ -1,0 +1,10 @@
+.is-checkout {
+
+    .title-big:not(.offcanvas-title) {
+        margin-top: 30px;
+
+        @include media-breakpoint-up(md) {
+            margin-top: 50px;
+        }
+    }
+}

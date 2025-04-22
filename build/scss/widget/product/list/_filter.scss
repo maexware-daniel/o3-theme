@@ -1,0 +1,76 @@
+#offcanvas__filter {
+    .offcanvas-header {
+        padding: 0;
+    }
+}
+
+.alist__filter {
+    display: none;
+    flex-direction: column;
+    padding-top: 1rem;
+
+    &.offcanvas-body {
+        display: flex;
+    }
+
+    @include media-breakpoint-up(md) {
+        display: flex;
+        padding-right: 3rem;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    [data-bs-toggle="collapse"] {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        padding: 20px 4px 20px 0;
+        width: 100%;
+
+        &:not(:first-of-type) {
+            border-top: 1px solid $input-border-color;
+        }
+
+        &:after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-top-width: 1px;
+            border-right-width: 1px;
+            border-style: solid;
+            border-color: $body-color;
+            border-left: none;
+            transform: rotate(135deg);
+            border-bottom: 0;
+        }
+    }
+}
+
+.alist__filter-active {
+    display: flex;
+    gap: 12px;
+    order: -1;
+    margin: 20px 0;
+    flex-wrap: wrap;
+
+    button {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 10px;
+        white-space: nowrap;
+        background-color: #F8F8F8;
+        color: $input-placeholder-color;
+    }
+}
+
+.alist__filter-apply {
+    position: absolute;
+    bottom: var(--bs-offcanvas-padding-y);
+    width: calc(100% - 2 * var(--bs-offcanvas-padding-x));
+}

@@ -1,0 +1,46 @@
+.nav-tabs {
+    justify-content: left;
+    margin: 0px 0px 25px;
+
+    .nav-link {
+        font-weight: 600;
+        font-size: 1.25rem;
+        border: none;
+        margin-bottom: initial;
+        width: 215px;
+        text-align: center;
+
+        &:hover {
+            border: none
+        }
+
+        &.active {
+            border-bottom-color: var(--bs-primary);
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+        }
+    }
+}
+
+.tab-content {
+    color: #616060;
+    margin-bottom: 80px;
+
+    & > .tab-pane {
+        display: block;
+        margin: 0 0 40px;
+
+        @include media-breakpoint-up(md) {
+            &:not(.active) {
+                display: none;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    h4 {
+        color: $body-color;
+        font-weight: 600;
+        font-size: 1.25rem;
+    }
+}

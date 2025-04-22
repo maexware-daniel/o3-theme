@@ -1,0 +1,36 @@
+.details__picture-main {
+
+    img {
+        display: block;
+        margin: 0 auto;
+        max-height: 345px;
+        max-width: 100%;
+
+        @include media-breakpoint-up(lg){
+            max-height: unset;
+        }
+    }
+}
+
+.details__picture-thumbnails {
+    margin-top: 15px;
+
+    .splide__track {
+        max-width: 80%;
+        margin: 0 auto;
+
+        @include media-breakpoint-up(lg){
+            max-width: unset;
+            margin: unset;
+        }
+    }
+
+    img {
+        object-fit: scale-down;
+
+        &.is-active {
+            border: 1px solid var(--bs-primary);
+        }
+    }
+}
+

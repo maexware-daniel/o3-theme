@@ -1,0 +1,43 @@
+.megamenu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 30px 30px calc(30px - 1.5rem);
+    display: none;
+    background: $white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    z-index: 100;
+    margin-top: 2px;
+
+    .mega-dropdown:hover > & {
+        display: block;
+    }
+
+    a:not([data-level="is-level-2"]) {
+        display: block;
+        margin-top: 10px;
+    }
+}
+
+[data-level="is-level-1"] {
+    &.nav-item {
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        border-bottom-color: $white;
+
+        &:hover {
+            border-bottom-color: var(--bs-primary);
+        }
+    }
+
+    .nav-link {
+        color: $body-color;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+    }
+}
+
+[data-level="is-level-2"] {
+    font-weight: 600;
+}

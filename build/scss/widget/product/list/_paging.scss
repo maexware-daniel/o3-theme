@@ -1,0 +1,12 @@
+.pagination {
+    padding-top: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-top: 1px solid $border-color;
+}
+
+.page-link {
+    svg {
+        margin-top: -4px;
+    }
+}

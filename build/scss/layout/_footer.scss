@@ -1,0 +1,122 @@
+//
+// Footer
+// --------------------------------------------------
+// Import footer modules
+@import '../widget/footer/categorylist';
+@import '../widget/footer/info';
+@import '../widget/footer/services';
+
+:root {
+    --footer-bg: #01071C;
+}
+
+// General footer styles
+
+footer {
+    background-color: var(--footer-bg);
+    color: $white;
+
+    a {
+        color: $white;
+        text-decoration: none ;
+    }
+}
+
+.footer__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95px;
+    border-bottom: 1px solid #28304C;
+}
+
+.footer__box {
+    display: flex;
+    flex-direction: column;
+    padding-top: 32px;
+    padding-bottom: 32px;
+
+    @include media-breakpoint-up(md) {
+        align-items: center;
+    }
+
+    &:nth-child(1) {
+        @include media-breakpoint-up(md) {
+            border-bottom: 1px solid #28304C;
+        }
+        @include media-breakpoint-up(lg) {
+            border-bottom: unset;
+        }
+    }
+
+    &:nth-child(2) {
+        border-top: 1px solid #28304C;
+        border-bottom: 1px solid #28304C;
+
+        @include media-breakpoint-up(md) {
+            border-top: unset;
+            border-bottom: unset;
+            border-right: 1px solid #28304C;
+        }
+
+        @include media-breakpoint-up(lg) {
+            border-left: 1px solid #28304C;
+        }
+    }
+}
+
+.footer__box-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.75rem;
+    color: #7B8193;
+    margin-bottom: 24px!important;
+}
+
+.footer__box-content {
+    div {
+        &:not(:last-child) {
+            margin-bottom: 16px;
+        }
+    }
+}
+
+.footer__box-social {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    background-color: #171E37;
+
+    &:hover {
+        background-color: var(--bs-primary);
+    }
+}
+
+.footer__legal {
+    border-top: 1px solid #28304C;
+    color: #7B8193;
+    font-size: 0.75rem;
+
+    a {
+        color: #7B8193;
+    }
+
+    .container-xxl {
+        display: flex;
+        justify-content: space-between;
+        padding: 24px 10px;
+        flex-direction: column;
+        gap: 20px;
+
+        @include media-breakpoint-up(md) {
+            flex-direction: row;
+            align-items: center;
+            height: 95px;
+            gap: unset;
+        }
+    }
+}

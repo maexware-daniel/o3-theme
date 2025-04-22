@@ -1,0 +1,20 @@
+.basket__voucher {
+    background-color: $secondary;
+    padding: 0 30px 30px;
+
+    .input-group {
+        margin-top: 10px;
+    }
+}
+
+.basket__voucher-collapse {
+    line-height: 17px;
+    border-bottom: 1px dashed #121212;
+    padding: 0 !important;
+    font-weight: 400 !important;
+    width: max-content !important;
+
+    &:after {
+        display: none;
+    }
+}

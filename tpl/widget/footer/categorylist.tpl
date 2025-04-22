@@ -1,0 +1,15 @@
+[{if $oxcmp_categories}]
+    [{assign var="categories" value=$oxcmp_categories}]
+    [{block name="footer_categories"}]
+        [{foreach from=$categories item=_cat}]
+            [{if $_cat->getIsVisible()}]
+                [{if $_cat->getContentCats()}]
+                    [{foreach from=$_cat->getContentCats() item=_oCont}]
+                        <div><a href="[{$_oCont->getLink()}]">[{$_oCont->oxcontents__oxtitle->value}]</a></div>
+                    [{/foreach}]
+                [{/if}]
+                <div><a href="[{$_cat->getLink()}]">[{$_cat->oxcategories__oxtitle->value}]</a></div>
+            [{/if}]
+        [{/foreach}]
+    [{/block}]
+[{/if}]

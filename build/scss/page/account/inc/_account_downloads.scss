@@ -1,0 +1,23 @@
+.download {
+    display: flex;
+    gap: 20px;
+    border: 1px solid $input-border-color;
+    padding: 30px 20px;
+    margin-top: 15px;
+    flex-direction: column;
+
+    &:first-of-type {
+        margin-top: 0;
+    }
+
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+
+        @include media-breakpoint-up(sm) {
+            align-items: center;
+        }
+    }
+}

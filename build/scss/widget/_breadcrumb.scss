@@ -1,0 +1,22 @@
+.breadcrumb {
+    padding-top: 15px;
+    margin-bottom: 30px;
+
+    .is-checkout & {
+        margin: 35px 0 30px;
+    }
+}
+
+.breadcrumb-item {
+
+    a {
+        color: $input-placeholder-color;
+    }
+
+    &.active {
+
+        a {
+            color: $breadcrumb-item-active-color;
+        }
+    }
+}

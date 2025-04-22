@@ -1,0 +1,146 @@
+.user {
+
+    @include media-breakpoint-up(md) {
+        display: grid;
+        grid-template-columns: 50% auto 44%;
+        grid-template-rows: min-content min-content min-content 1fr;
+        grid-template-areas:
+        "steps           . summary"
+        "billingaddress  . summary"
+        "shippingaddress . summary"
+        "newsletter      . summary"
+        "message         . summary"
+        "navi            . summary";
+    }
+
+    @include media-breakpoint-up(lg) {
+        grid-template-columns: 28% 4% 28% auto 34%;
+        grid-template-areas:
+        "steps          steps steps           . summary"
+        "billingaddress .     shippingaddress . summary"
+        "newsletter     .     message         . summary"
+        "navi           navi  navi            . summary";
+    }
+
+    .basket__summary {
+        display: none;
+
+        @include media-breakpoint-up(md) {
+            display: flex;
+        }
+    }
+}
+
+.component__steps {
+    grid-area: steps;
+}
+
+.user__billingaddress {
+    grid-area: billingaddress;
+}
+
+.user__shippingaddress {
+    grid-area: shippingaddress;
+}
+
+.user__newsletter {
+    grid-area: newsletter;
+}
+
+.user__message {
+    grid-area: message;
+
+    textarea {
+        height: 100px!important;
+    }
+}
+
+.user__navi {
+    grid-area: navi;
+    display: flex;
+    justify-content: space-between;
+
+    svg {
+        path {
+            fill: var(--bs-primary);
+        }
+    }
+}
+
+.user__shippingaddress-change {
+
+    .form-check {
+        border-style: solid;
+        border-color: #DBDBDB;
+        border-top-width: 1px;
+        border-left-width: 1px;
+        border-right-width: 1px;
+        border-bottom-width: 0;
+        padding-left: 0;
+        position: relative;
+        margin: 0;
+
+        &:last-of-type {
+            border-bottom-width: 1px;
+        }
+    }
+
+    .form-check-label {
+        width: 100%;
+        padding: 20px 15px 20px 50px;
+
+        span {
+            font-weight: 600;
+            width: 100%;
+
+            &.desc {
+                font-weight: 400;
+                color: $input-placeholder-color;
+                margin-top: 8px;
+            }
+        }
+
+        button {
+            position: absolute;
+            right: 15px;
+
+            &:last-of-type {
+                right: 5px;
+                bottom: 10px;
+            }
+        }
+    }
+
+    .form-check-input {
+        position: absolute;
+        left: 35px;
+        top: 16px;
+
+        &:checked {
+            & + .form-check-label {
+                background-color: $secondary;
+            }
+        }
+    }
+}
+
+.user__shippingaddress-form {
+    margin-top: 2rem;
+}
+
+#address_new {
+
+    & + label {
+        .user__shippingaddress-form {
+            display: none;
+        }
+    }
+
+    &:checked {
+        & + label {
+            .user__shippingaddress-form {
+                display: block;
+            }
+        }
+    }
+}

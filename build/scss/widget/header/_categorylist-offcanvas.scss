@@ -1,0 +1,126 @@
+#offcanvas__mainnav {
+
+    .languages {
+        flex-grow: 1;
+        text-align: right;
+        margin-bottom: calc(#{$btn-padding-y} * -1);
+    }
+
+    .currencies {
+        margin-right: calc(#{$btn-padding-x} * -1);
+        margin-bottom: calc(#{$btn-padding-y} * -1);
+    }
+
+    .offcanvas-body {
+        display: none;
+    }
+
+    &.show .offcanvas-body {
+        display: block;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .nav {
+        display: block;
+        transition: all .45s;
+
+        &.is-level-1 {
+            transform: translateX(-100vw);
+        }
+
+        &.is-level-2 {
+            transform: translateX(-200vw);
+        }
+    }
+
+    .nav-items {
+        flex: 0 0 100%;
+    }
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #EAEFF0;
+        padding: 0;
+        min-height: 49px;
+
+        &.last {
+            border: none;
+        }
+    }
+
+    .nav-expand {
+
+        &.active {
+            > .nav-expand-content {
+                visibility: visible;
+            }
+        }
+    }
+
+    .nav-expand-content {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        visibility: hidden;
+        transition: all .45s;
+
+        &[data-level="is-level-2"] {
+            right: -100vw;
+        }
+
+        &[data-level="is-level-3"] {
+            right: -100vw;
+        }
+
+        .nav-back-link {
+            display: flex;
+            align-items: center;
+
+            &:before {
+                content: '';
+                background-image: url('data:image/svg+xml;utf8,<svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 8L1 4.5L4 1" stroke="%23121212" stroke-linecap="square"/></svg>');
+                display: block;
+                width: 5px;
+                height: 9px;
+                margin-right: 14px;
+            }
+        }
+    }
+
+    .nav-expand-link {
+        display: flex;
+        justify-content: space-between;
+
+        &:after {
+            content: '';
+            background-image: url('data:image/svg+xml;utf8,<svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 8L4 4.5L1 1" stroke="%23121212" stroke-linecap="square"/></svg>');
+            display: block;
+            width: 5px;
+            height: 9px;
+        }
+    }
+
+    .nav-back-icon {
+        width: 28px;
+        height: 28px;
+        fill: #fff;
+        margin-right: 20px;
+
+        @include media-breakpoint-up(md) {
+            width: 38px;
+            height: 38px;
+            margin-right: 43px;
+        }
+    }
+}
+
+.offcanvas__mainnav-logo {
+    max-width: 98px;
+    height: auto;
+}

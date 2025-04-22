@@ -1,0 +1,15 @@
+[{if $listDisplayType || $sort && $place != "bottom"}]
+    [{if $listDisplayType}]
+        [{include file="widget/locator/listdisplaytype.tpl"}]
+    [{/if}]
+
+    [{if $sort}]
+        [{include file="widget/locator/sort.tpl"}]
+    [{/if}]
+[{/if}]
+
+[{if $locator}]
+    [{if $place == "bottom"}]
+        [{include file="widget/locator/paging.tpl" pages=$locator place=$place attributes=$attributes}]
+    [{/if}]
+[{/if}]

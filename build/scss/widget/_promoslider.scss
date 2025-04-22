@@ -1,0 +1,11 @@
+.start__promoslider {
+    margin: 15px calc(var(--bs-gutter-x) * -0.5) 80px;
+
+    @include media-breakpoint-up(md) {
+        margin: 0 calc(var(--bs-gutter-x) * -0.5) 80px;
+    }
+
+    @include media-breakpoint-up(xxl) {
+        margin: 0 0 80px;
+    }
+}

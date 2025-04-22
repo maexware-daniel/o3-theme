@@ -1,0 +1,23 @@
+.basket__summary {
+    background-color: $secondary;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-self: start;
+
+    table {
+        margin: 0;
+    }
+}
+
+.basket__summary-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.basket__summary-total {
+    & > * {
+        padding-top: 15px!important;
+    }
+}

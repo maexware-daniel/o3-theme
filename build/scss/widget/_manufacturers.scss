@@ -1,0 +1,46 @@
+.start__manufacturer {
+    position: relative;
+    padding-top: 80px;
+    background: $light;
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        background: $light;
+        width: 100vw;
+        height: calc(100% + 80px);
+        top: 0;
+        left: calc(#{$grid-gutter-width} * -0.5);
+        z-index: -1;
+
+        @include media-breakpoint-up(xxl) {
+            $xxl-rem: map-get($container-max-widths, xxl) / 16px;
+            left: calc((-100vw + #{$xxl-rem}rem - #{$grid-gutter-width}) / 2);
+        }
+
+    }
+}
+
+.start__manufacturer-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    height: 90px;
+    padding: 10px;
+
+    img {
+        max-width: 100%;
+        height: auto;
+        max-height: 100%;
+    }
+}
+
+.start__manufacturer-allbrands {
+    @include media-breakpoint-up(lg) {
+        position: absolute;
+        top: 62px;
+        right: 0;
+    }
+}

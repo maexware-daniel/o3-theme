@@ -1,0 +1,36 @@
+.account__menu {
+    display: flex;
+    flex-direction: column;
+    border-color: $input-border-color;
+    border-style: solid;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 0;
+
+    @include media-breakpoint-up(md) {
+        border-top-width: 1px;
+    }
+
+    a {
+        padding: 15px 30px;
+        font-size: 1.125rem;
+        line-height: 150%;
+        hyphens: auto;
+
+        &.active {
+            color: var(--bs-primary);
+            background-color: $secondary;
+        }
+    }
+}
+
+.account__menu-logout {
+    margin: 15px 30px 30px;
+}
+
+.account__login-forget {
+    border-bottom: 1px dashed $body-color;
+    margin-bottom: 1.25rem;
+    padding-top: 4px;
+}

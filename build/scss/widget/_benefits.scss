@@ -1,0 +1,38 @@
+.start__benefits {
+    border-color: $border-color;
+    border-style: solid;
+    border-width: 1px 0;
+    padding: 0.5rem 0;
+    margin-bottom: 80px;
+
+    @include media-breakpoint-up(sm) {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    @include media-breakpoint-up(lg) {
+        flex-wrap: unset;
+        justify-content: unset;
+        gap: 10px;
+    }
+}
+
+.start__benefits-box {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+
+    @include media-breakpoint-up(sm) {
+        width: 50%;
+    }
+
+    @include media-breakpoint-up(lg) {
+        flex-grow: 1;
+    }
+
+    @include media-breakpoint-up(xl) {
+        padding: 30px;
+    }
+}

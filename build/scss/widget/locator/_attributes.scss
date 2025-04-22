@@ -1,0 +1,16 @@
+.details__attributes {
+    column-width: 200px;
+    column-gap: 2em;
+    margin: 0 auto;
+
+    h4 {
+        column-span: all;
+    }
+
+    div {
+        margin-bottom: 0.5rem;
+    }
+    span {
+        font-weight: bold;
+    }
+}

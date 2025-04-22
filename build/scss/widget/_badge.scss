@@ -1,0 +1,15 @@
+.badge-counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    background-color: var(--bs-primary);
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.75rem;
+    top: 5px;
+    right: 3px;
+}

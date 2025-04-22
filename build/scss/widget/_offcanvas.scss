@@ -1,0 +1,19 @@
+.offcanvas {
+    max-width: calc(100% - 82px);
+}
+
+.offcanvas-start {
+    .btn-close {
+        filter: invert(1);
+        position: absolute;
+        right: -35px;
+        opacity: 1;
+        top: 20px;
+    }
+}
+
+.offcanvas-header, .offcanvas-body {
+    @include media-breakpoint-up(lg) {
+        padding: var(--bs-offcanvas-padding-y) calc(var(--bs-offcanvas-padding-x) * 2);
+    }
+}
