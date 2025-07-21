@@ -50,12 +50,12 @@
       ]
   }
   },
-  "scripts": {
+"scripts": {
     "post-install-cmd": [
-      "npm i && gulp prod"
-    ],
+      "cd $PWD/source/Application/views/o3-theme && npm install && gulp prod"
+    ]
     "post-update-cmd": [
-      "echo 'Bitte führen Sie npm install && gulp aus, um die Frontend-Assets zu aktualisieren.'"
+      "cd $PWD/source/Application/views/o3-theme && npm install && gulp prod"
     ]
   }
 }
