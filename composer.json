@@ -1,7 +1,7 @@
 {
   "name": "o3-shop/o3-theme",
   "description": "Responsive Theme for O3-Shop",
-  "type": "oxideshop-theme",
+  "type": "o3shop-theme",
   "keywords": [
         "o3-shop",
         "themes",
