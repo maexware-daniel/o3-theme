@@ -49,13 +49,5 @@
           "package-lock.json"
       ]
   }
-  },
-"scripts": {
-    "post-install-cmd": [
-      "cd $PWD/source/Application/views/o3-theme && npm install && gulp prod"
-    ],
-    "post-update-cmd": [
-      "cd $PWD/source/Application/views/o3-theme && npm install && gulp prod"
-    ]
   }
 }
