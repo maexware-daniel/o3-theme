@@ -22,8 +22,8 @@
  * Theme Information
  */
 $aTheme = array(
-    'id'          => 'o3',
-    'title'       => 'O3',
+    'id'          => 'o3-theme',
+    'title'       => 'O3-Theme',
     'description' => 'O3-Theme is O3-Shops official responsive theme based on the CSS framework Bootstrap 5.',
     'thumbnail'   => 'theme.png',
     'version'     => '1.0.0',

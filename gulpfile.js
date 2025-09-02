@@ -19,7 +19,7 @@ import compareBlocks from './gulp-compare-blocks.js';
 
 const sassCompiler = gulpSass(sass);
 
-const themeName = 'o3';
+const themeName = 'o3-theme';
 
 const paths = {
     scss: `./build/scss/**/*.scss`,
