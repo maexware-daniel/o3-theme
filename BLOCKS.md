@@ -1,6 +1,6 @@
 # Block Comparison Report
 
-## Missing blocks in Theme O3 (20):
+## Missing blocks in Theme O3 (21):
 
 | Block Name | Filepath in Wave |
 |------------|-------------------|
@@ -18,6 +18,7 @@
 | dd_footer_newsletter_form_inner_group | widget/footer/newsletter.tpl |
 | footer_vendors | widget/footer/vendorlist.tpl |
 | categorylist_navbar_minibasket | widget/header/categorylist.tpl |
+| dd_widget_minibasket_new_item_msg | widget/minibasket/newbasketitemmsg.tpl |
 | widget_product_listitem_infogrid | widget/product/listitem_infogrid.tpl |
 | widget_product_listitem_infogrid_shortdesc | widget/product/listitem_infogrid.tpl |
 | widget_product_listitem_infogrid_selections | widget/product/listitem_infogrid.tpl |

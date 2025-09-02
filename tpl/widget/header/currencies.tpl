@@ -6,21 +6,11 @@
                 [{$currency->name}]
             [{/block}]
         </button>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu dropdown-menu-dark">
             [{block name="dd_layout_page_header_icon_menu_currencies_list"}]
                 [{foreach from=$oxcmp_cur item=_cur}]
-                    [{if $_cur->selected}]
-                        [{assign var="selectedCurrency" value=$_cur->name}]
-                        [{capture name="currencySelected"}]
-                            <li>
-                                <a class="dropdown-item" href="[{$_cur->link|oxaddparams:$oView->getDynUrlParams()}]" title="[{$_cur->name}]">
-                                    <span>[{$_cur->name}]</span>
-                                </a>
-                            </li>
-                        [{/capture}]
-                    [{/if}]
-                    <li[{if $_cur->selected}] class="active"[{/if}]>
-                        <a class="dropdown-item" href="[{$_cur->link|oxaddparams:$oView->getDynUrlParams()}]" title="[{$_cur->name}]">[{$_cur->name}]</a>
+                    <li>
+                        <a class="dropdown-item[{if $_cur->selected}] active[{/if}]" href="[{$_cur->link|oxaddparams:$oView->getDynUrlParams()}]" title="[{$_cur->name}]">[{$_cur->name}]</a>
                     </li>
                 [{/foreach}]
             [{/block}]
