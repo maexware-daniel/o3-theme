@@ -100,14 +100,6 @@ header {
     a, .dropdown-toggle {
         color: $white;
     }
-
-    .dropdown-item {
-        color: #121212;
-
-        &.active {
-            color: $white;
-        }
-    }
 }
 
 .header__phone {
