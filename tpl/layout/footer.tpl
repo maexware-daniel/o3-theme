@@ -15,7 +15,7 @@
             <div class="row">
 
                 [{block name="dd_footer_information"}]
-                    <section class="col-12 col-md-4 col-lg-4 footer__box" itemscope itemtype="https://schema.org/Organization">
+                    <section class="col-12 col-lg-4 footer__box" itemscope itemtype="https://schema.org/Organization">
 
                         <div class="footer__box-content">
                             <div class="footer__box-title">[{oxmultilang ident="INFORMATION"}]</div>
@@ -90,7 +90,7 @@
                 [{/block}]
 
                 [{block name="dd_footer_categorytree"}]
-                    <section class="col-12 col-md-4 col-lg-4 footer__box">
+                    <section class="col-12 col-md-6 col-lg-4 footer__box">
                         <div class="footer__box-content">
                             <div class="footer__box-title">[{oxmultilang ident="CATEGORIES"}]</div>
                             [{block name="dd_footer_categorytree_inner"}]
@@ -101,7 +101,7 @@
                 [{/block}]
 
                 [{block name="dd_footer_servicelist"}]
-                    <section class="col-12 col-md-4 col-lg-4 footer__box">
+                    <section class="col-12 col-md-6 col-lg-4 footer__box">
                         <div class="footer__box-content">
                             <div class="footer__box-title">[{oxmultilang ident="SERVICES"}]</div>
                             [{block name="dd_footer_servicelist_inner"}]

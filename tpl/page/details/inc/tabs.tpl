@@ -38,7 +38,7 @@
     [{/if}]
 [{/block}]
 
-[{block name="details_tabs_attributes"}]
+[{block name="details_tabs_reviews"}]
     [{if $oView->isReviewActive()}]
         [{oxscript include="js/widget/rating.js" priority=10}]
         [{capture append="tabs"}]<a class="nav-link[{if $blFirstTab}] active[{/if}]" href="#details__reviews" role="tab" data-bs-toggle="tab" aria-controls="details__reviews" aria-selected="[{if $blFirstTab}]true[{else}]false[{/if}]">[{oxmultilang ident="REVIEWS"}] ([{if $oView->getReviews()}][{$oView->getReviews()|count}][{else}]0[{/if}])</a>[{/capture}]

@@ -21,7 +21,7 @@
 
     [{if $products && !empty($products)}]
 
-        <div class="row[{if $listId == "productList" && $oView->getAttributes()}] col-12 col-md-9[{else}] col-12[{/if}] [{$type}]-view" data-listing="[{$listId}]">
+        <div class="d-flex flex-wrap[{if $listId == "productList" && $oView->getAttributes()}] col-12 col-md-9[{else}] col-12[{/if}] [{$type}]-view" data-listing="[{$listId}]">
             [{foreach from=$products item="_product" name="productlist"}]
 
                 [{assign var="testid" value=$listId|cat:"_"|cat:$smarty.foreach.productlist.iteration}]
