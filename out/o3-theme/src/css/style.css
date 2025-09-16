@@ -8016,7 +8016,7 @@ header.is-minimal:after {
   width: 100%;
   background-color: rgba(17, 34, 17, 0.133333);
   position: absolute;
-  top: calc(115px - 40px);
+  bottom: 0;
 }
 header.is-minimal > .container-xxl {
   justify-content: space-between;
@@ -8028,6 +8028,10 @@ header.is-minimal .header__phone svg path {
 }
 header.is-minimal .header__logo {
   order: initial;
+}
+.cl-basket header {
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(17, 34, 17, 0.133333);
 }
 
 .header__topinfo {
@@ -8062,6 +8066,8 @@ header.is-minimal .header__logo {
 
 .header__logo {
   flex: 1 1 calc(49% - 10px);
+  max-width: 150px;
+  min-width: 100px;
 }
 
 .header__search {
@@ -8086,10 +8092,21 @@ header.is-minimal .header__logo {
 }
 
 .header__mainnav {
+  position: relative;
   flex: 1 1 100%;
   order: 5;
   margin-left: -0.5rem;
   margin-right: -0.5rem;
+}
+.header__mainnav:after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 100vw;
+  background-color: rgba(17, 34, 17, 0.133333);
+  position: absolute;
+  top: 0;
+  left: calc(1.875rem * -0.5);
 }
 
 .services li {
@@ -8131,6 +8148,9 @@ footer a {
   align-items: center;
   height: 95px;
   border-bottom: 1px solid #28304C;
+}
+.footer__logo img {
+  max-height: 60%;
 }
 
 .footer__box {
@@ -8239,6 +8259,7 @@ footer a {
 .details__info-stock:before {
   content: "";
   display: inline-block;
+  flex-shrink: 0;
   width: 24px;
   height: 24px;
   background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2224%22%20height%3D%2224%22%20rx%3D%2212%22%20fill%3D%22%23008F39%22%20fill-opacity%3D%220.16%22%2F%3E%3Cpath%20d%3D%22M8%2011.8571L11.0938%2015L17%209%22%20stroke%3D%22%23008F39%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E");
@@ -11715,15 +11736,6 @@ footer a {
     height: 38px;
     margin-right: 43px;
   }
-  header:after {
-    content: "";
-    display: block;
-    height: 1px;
-    width: 100%;
-    background-color: rgba(17, 34, 17, 0.133333);
-    position: absolute;
-    top: 115px;
-  }
   .header__topinfo {
     order: 1;
   }
@@ -14737,6 +14749,9 @@ footer a {
   .header__topinfo:before {
     left: calc((-100vw + 82.5rem - 1.875rem) / 2);
   }
+  .header__mainnav:after {
+    left: calc((-100vw + 82.5rem + 0.5rem - 1.875rem) / 2);
+  }
   .start__manufacturer:before {
     left: calc((-100vw + 82.5rem - 1.875rem) / 2);
   }
@@ -15282,4 +15297,3 @@ footer a {
     display: none !important;
   }
 }/*# sourceMappingURL=style.css.map */
-/*# sourceMappingURL=style.css.map */
