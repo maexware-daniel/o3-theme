@@ -16,18 +16,6 @@
 header {
     position: relative;
 
-    @include media-breakpoint-up(md) {
-        &:after {
-            content: '';
-            display: block;
-            height: 1px;
-            width: 100%;
-            background-color: $border-color;
-            position: absolute;
-            top: $header-border-position;
-        }
-    }
-
     & > .container-xxl {
         display: flex;
         flex-wrap: wrap;
@@ -44,7 +32,7 @@ header {
             width: 100%;
             background-color: $border-color;
             position: absolute;
-            top: calc(#{$header-border-position} - #{$topinfo-height});
+            bottom: 0;
         }
 
         & > .container-xxl {
@@ -63,6 +51,11 @@ header {
             order: unset;
         }
     }
+
+	.cl-basket & {
+		padding-bottom: 15px;
+		border-bottom: 1px solid $border-color;
+	}
 }
 
 .header__topinfo {
@@ -109,6 +102,8 @@ header {
 
 .header__logo {
     flex: 1 1 calc(49% - 10px);
+	max-width: 150px;
+	min-width: 100px;
 
     @include media-breakpoint-up(md) {
         flex: 0 1 auto;
@@ -153,10 +148,27 @@ header {
 }
 
 .header__mainnav {
+	position: relative;
     flex: 1 1 100%;
     order: 5;
     margin-left: -$navbar-nav-link-padding-x;
     margin-right: -$navbar-nav-link-padding-x;
+
+	&:after {
+		content: '';
+		display: block;
+		height: 1px;
+		width: 100vw;
+		background-color: $border-color;
+		position: absolute;
+		top: 0;
+		left: calc(#{$grid-gutter-width} * -0.5);
+
+		@include media-breakpoint-up(xxl) {
+			$xxl-rem: map-get($container-max-widths, xxl) / 16px;
+			left: calc((-100vw + #{$xxl-rem}rem + $navbar-nav-link-padding-x - #{$grid-gutter-width}) / 2);
+		}
+	}
 }
 
 

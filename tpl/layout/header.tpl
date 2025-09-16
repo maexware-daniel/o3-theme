@@ -20,7 +20,7 @@
                 [{block name="layout_header_logo"}]
                     [{assign var="slogoImg" value=$oViewConf->getViewThemeParam('sLogoFile')}]
                     <a class="header__logo" href="[{$oViewConf->getHomeLink()}]" title="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]">
-                        <img src="[{$oViewConf->getImageUrl($slogoImg)}]" alt="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]">
+                        <img class="img-fluid" src="[{$oViewConf->getImageUrl($slogoImg)}]" alt="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]">
                     </a>
                 [{/block}]
 
@@ -74,7 +74,7 @@
                 [{block name="layout_header_logo"}]
                     [{assign var="slogoImg" value=$oViewConf->getViewThemeParam('sLogoFile')}]
                     <a class="header__logo" href="[{$oViewConf->getHomeLink()}]" title="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]">
-                        <img src="[{$oViewConf->getImageUrl($slogoImg)}]" alt="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]">
+                        <img class="img-fluid" src="[{$oViewConf->getImageUrl($slogoImg)}]" alt="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]">
                     </a>
                 [{/block}]
 
