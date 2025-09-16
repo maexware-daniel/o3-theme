@@ -79,30 +79,6 @@ $aTheme = array(
             'value' => array("12", "16", "24", "32"),
         ),
         array(
-            'group' => 'features',
-            'name'  => 'bl_showCompareList',
-            'type'  => 'bool',
-            'value' => 1,
-        ),
-        array(
-            'group' => 'features',
-            'name'  => 'bl_showGiftWrapping',
-            'type'  => 'bool',
-            'value' => 1,
-        ),
-        array(
-            'group' => 'features',
-            'name'  => 'bl_showListmania',
-            'type'  => 'bool',
-            'value' => 1,
-        ),
-        array(
-            'group' => 'features',
-            'name'  => 'bl_showPriceAlarm',
-            'type'  => 'bool',
-            'value' => 0,
-        ),
-        array(
             'group' => 'display',
             'name'  => 'bl_showManufacturer',
             'type'  => 'bool',
@@ -111,12 +87,6 @@ $aTheme = array(
         array(
             'group' => 'features',
             'name'  => 'bl_showVouchers',
-            'type'  => 'bool',
-            'value' => 1,
-        ),
-        array(
-            'group' => 'features',
-            'name'  => 'bl_showWishlist',
             'type'  => 'bool',
             'value' => 1,
         ),
@@ -221,13 +191,6 @@ $aTheme = array(
             'name'  => 'sCatThumbnailsize',
             'type'  => 'str',
             'value' => '1296*500',
-        ),
-        array(
-            'group'       => 'display',
-            'name'        => 'sDefaultListDisplayType',
-            'type'        => 'select',
-            'value'       => 'grid',
-            'constraints' => 'line|grid',
         ),
         array(
             'group' => 'slider',
