@@ -105,7 +105,7 @@ gulp.task('styles:prod', () => {
                 `build/js/**/*.js`
             ],
             safelist: {
-                standard: [/^splide/, /^is-/, /backdrop/]
+                standard: [/^splide/, /^is-/, /backdrop/, /grid-view/, /btn-light/]
             }
         }))
         .pipe(cleanCSS())
