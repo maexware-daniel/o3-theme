@@ -193,6 +193,13 @@ $aTheme = array(
             'value' => '1296*500',
         ),
         array(
+            'group'       => 'display',
+            'name'        => 'sDefaultListDisplayType',
+            'type'        => 'select',
+            'value'       => 'grid',
+            'constraints' => 'grid',
+        ),
+        array(
             'group' => 'slider',
             'name'  => 'sSliderSlideFade',
             'type'        => 'select',
