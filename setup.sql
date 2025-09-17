@@ -1,6 +1,5 @@
 INSERT INTO `oxconfig` (`OXID`, `OXSHOPID`, `OXMODULE`, `OXVARNAME`, `OXVARTYPE`, `OXVARVALUE`, `OXTIMESTAMP`)
 VALUES (uuid(), 1, 'theme:o3-theme', 'sGATrackingId', 'str', '', NOW()),
-       (uuid(), 1, 'theme:o3-theme', 'bl_showWishlist', 'bool', '1', NOW()),
        (uuid(), 1, 'theme:o3-theme', 'sFaviconSvgFile', 'str', 'icon.svg', NOW()),
        (uuid(), 1, 'theme:o3-theme', 'sCatPromotionsize', 'str', '370*107', NOW()),
        (uuid(), 1, 'theme:o3-theme', 'sCatThumbnailsize', 'str', '1296*500', NOW()),
@@ -28,7 +27,6 @@ VALUES (uuid(), 1, 'theme:o3-theme', 'sGATrackingId', 'str', '', NOW()),
        (uuid(), 1, 'theme:o3-theme', 'blShowFilters', 'bool', '1', NOW()),
        (uuid(), 1, 'theme:o3-theme', 'blFooterShowNews', 'bool', '1', NOW()),
        (uuid(), 1, 'theme:o3-theme', 'sYouTubeUrl', 'str', 'https://www.youtube.com', NOW()),
-       (uuid(), 1, 'theme:o3-theme', 'bl_showListmania', 'bool', '1', NOW()),
        (uuid(), 1, 'theme:o3-theme', 'bl_showCompareList', 'bool', '1', NOW()),
        (uuid(), 1, 'theme:o3-theme', 'blSecondaryColor', 'str', '#F2F6FF', NOW()),
        (uuid(), 1, 'theme:o3-theme', 'sEmailLogo', 'str', 'logo.svg', NOW()),
@@ -75,11 +73,8 @@ VALUES (uuid(), 'theme:o3-theme', 'sGATrackingId', 'googleanalytics', '', 1, NOW
        (uuid(), 'theme:o3-theme', 'sTwitterUrl', 'footer', '', 4, NOW()),
        (uuid(), 'theme:o3-theme', 'sGoogleMapsAddr', 'contact', '', 1, NOW()),
        (uuid(), 'theme:o3-theme', 'bl_showWishlist', 'features', '', 1, NOW()),
-       (uuid(), 'theme:o3-theme', 'bl_showCompareList', 'features', '', 2, NOW()),
        (uuid(), 'theme:o3-theme', 'bl_showListmania', 'features', '', 3, NOW()),
        (uuid(), 'theme:o3-theme', 'bl_showVouchers', 'features', '', 4, NOW()),
-       (uuid(), 'theme:o3-theme', 'bl_showGiftWrapping', 'features', '', 5, NOW()),
-       (uuid(), 'theme:o3-theme', 'bl_showPriceAlarm', 'features', '', 6, NOW()),
        (uuid(), 'theme:o3-theme', 'aDetailImageSizes', 'images', '', 1, NOW()),
        (uuid(), 'theme:o3-theme', 'sIconsize', 'images', '', 2, NOW()),
        (uuid(), 'theme:o3-theme', 'sThumbnailsize', 'images', '', 3, NOW()),
@@ -121,3 +116,23 @@ VALUES (uuid(), 'theme:o3-theme', 'sGATrackingId', 'googleanalytics', '', 1, NOW
        (uuid(), 'theme:o3-theme', 'blUseGoogleTS', 'googlets', '', 8, NOW()),
        (uuid(), 'theme:o3-theme', 'sGoogleVendorId', 'googlets', '', 9, NOW()),
        (uuid(), 'theme:o3-theme', 'sGoogleShoppingAccountId', 'googlets', '', 10, NOW());
+
+UPDATE `oxcontents`
+SET `oxcontent` = '[{oxifcontent ident=\"oxagb\" object=\"oCont\"}]Ich habe die <a href=\"#modal__agb\" data-bs-toggle=\"modal\" role=\"button\" aria-controls=\"modal__agb\">[{ $oCont->oxcontents__oxtitle->value }]</a> gelesen und erkläre mich mit ihnen einverstanden.[{/oxifcontent}] [{oxifcontent ident=\"oxrightofwithdrawal\" object=\"oCont\"}]Ich wurde über mein <a href=\"#modal__rightofwithdrawal\" data-bs-toggle=\"modal\" role=\"button\" aria-controls=\"modal__rightofwithdrawal\">[{ $oCont->oxcontents__oxtitle->value }]</a> informiert.[{/oxifcontent}]',
+    `OXTIMESTAMP` = NOW()
+WHERE `OXLOADID` = 'oxrighttocancellegend';
+
+UPDATE `oxcontents`
+SET `oxcontent` = '[{oxifcontent ident=\"oxagb\" object=\"oCont\"}]Es gelten unsere <a href=\"#modal__agb\" data-bs-toggle=\"modal\" role=\"button\" aria-controls=\"modal__agb\">Allgemeinen Geschäftsbedingungen</a>.[{/oxifcontent}] [{oxifcontent ident=\"oxrightofwithdrawal\" object=\"oCont\"}]Hier finden Sie <a href=\"#modal__rightofwithdrawal\" data-bs-toggle=\"modal\" role=\"button\" aria-controls=\"modal__rightofwithdrawal\">Einzelheiten zum Widerrufsrecht</a>.[{/oxifcontent}]',
+    `OXTIMESTAMP` = NOW()
+WHERE `OXLOADID` = 'oxrighttocancellegend2';
+
+UPDATE `oxcontents`
+SET `oxcontent_1` = '[{oxifcontent ident=\"oxagb\" object=\"oCont\"}]I agree to the <a href=\"#modal__agb\" data-bs-toggle=\"modal\" role=\"button\" aria-controls=\"modal__agb\">[{ $oCont->oxcontents__oxtitle->value }]</a>.[{/oxifcontent}] [{oxifcontent ident=\"oxrightofwithdrawal\" object=\"oCont\"}]I have been informed about my <a href=\"#modal__rightofwithdrawal\" data-bs-toggle=\"modal\" role=\"button\" aria-controls=\"modal__rightofwithdrawal\">[{ $oCont->oxcontents__oxtitle->value }]</a>.[{/oxifcontent}]',
+    `OXTIMESTAMP` = NOW()
+WHERE `OXLOADID` = 'oxrighttocancellegend';
+
+UPDATE `oxcontents`
+SET `oxcontent_1` = '[{oxifcontent ident=\"oxagb\" object=\"oCont\"}]Our general <a href=\"#modal__agb\" data-bs-toggle=\"modal\" role=\"button\" aria-controls=\"modal__agb\">terms and conditions</a> apply.[{/oxifcontent}] [{oxifcontent ident=\"oxrightofwithdrawal\" object=\"oCont\"}]Read details about <a href=\"#modal__rightofwithdrawal\" data-bs-toggle=\"modal\" role=\"button\" aria-controls=\"modal__rightofwithdrawal\">right of withdrawal</a>.[{/oxifcontent}]',
+    `OXTIMESTAMP` = NOW()
+WHERE `OXLOADID` = 'oxrighttocancellegend2';

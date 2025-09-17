@@ -2,7 +2,7 @@
     [{oxscript include="js/widget/check-agb.js" priority=10}]
 
     <h1 class="title-big">
-        [{oxmultilang ident="CHECKOUT"}]
+        [{oxmultilang ident="O3_CHECKOUT"}]
     </h1>
 
     <hr class="hr-big">

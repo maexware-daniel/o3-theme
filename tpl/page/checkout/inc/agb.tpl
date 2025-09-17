@@ -1,6 +1,7 @@
 [{if !$hideButtons}]
 
     [{if !$oView->isActive('PsLogin')}]
+
         [{if $oView->isConfirmAGBActive()}]
             [{oxifcontent ident="oxrighttocancellegend" object="oContent"}]
                 <h3 class="title-small">
@@ -14,6 +15,39 @@
                 </h3>
             [{/oxifcontent}]
         [{/if}]
+
+        [{oxifcontent ident="oxagb" object="oCont"}]
+            <div class="modal fade" id="modal__agb" tabindex="-1" aria-labelledby="modal__agb-label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modal__agb-label">[{ $oCont->oxcontents__oxtitle->value }]</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            [{ $oCont->oxcontents__oxcontent->value }]
+                        </div>
+                    </div>
+                </div>
+            </div>
+        [{/oxifcontent}]
+
+        [{oxifcontent ident="oxrightofwithdrawal" object="oCont"}]
+            <div class="modal fade" id="modal__rightofwithdrawal" tabindex="-1" aria-labelledby="modal__rightofwithdrawal-label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modal__rightofwithdrawal-label">[{ $oCont->oxcontents__oxtitle->value }]</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            [{ $oCont->oxcontents__oxcontent->value }]
+                        </div>
+                    </div>
+                </div>
+            </div>
+        [{/oxifcontent}]
+
     [{/if}]
 
     [{block name="checkout_order_agb_inner"}]

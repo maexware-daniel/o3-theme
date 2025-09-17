@@ -159,6 +159,7 @@ $aLang = [
     'O3_STEPS_SEND'                                         => 'Adresse wählen',
     'O3_STEPS_PAY'                                          => 'Versand & Zahlung',
     'O3_STEPS_ORDER'                                        => 'Prüfung',
+    'O3_CHECKOUT'                                           => 'Kasse',
 
     // E-Mails
     'DD_FOOTER_FOLLOW_US'                                   => 'Folgen Sie uns',
