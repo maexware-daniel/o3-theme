@@ -61,7 +61,8 @@
     [{/block}]
 
     [{assign var="fixedBanner" value=$oView->getBanners()}]
-    [{if $fixedBanner.fixedBanner1 || $fixedBanner.fixedBanner2 || $fixedBanner.fixedBanner3}]
+
+    [{if $fixedBanner.fixedBannerSmall1 || $fixedBanner.fixedBannerSmall2 || $fixedBanner.fixedBannerSmall3}]
         [{include file="widget/fixedbanner.tpl" fixedBanner=$fixedBanner}]
     [{/if}]
 
@@ -77,6 +78,16 @@
             </div>
         [{/if}]
     [{/block}]
+
+    [{if $fixedBanner.fixedBannerBig}]
+        [{if $fixedBanner.fixedBannerBig->getBannerLink()}]
+            <a class="start__fixedbanner d-block" href="[{$fixedBanner.fixedBannerBig->getBannerLink()}]">
+                <img class="img-fluid" src="[{$fixedBanner.fixedBannerBig->getBannerPictureUrl()}]" alt="[{$fixedBanner.fixedBannerBig->oxactions__oxtitle->value}]">
+            </a>
+        [{else}]
+            <img class="start__fixedbanner img-fluid" src="[{$fixedBanner.fixedBannerBig->getBannerPictureUrl()}]" alt="[{$fixedBanner.fixedBannerBig->oxactions__oxtitle->value}]">
+        [{/if}]
+    [{/if}]
 
     [{block name="start_newest_articles"}]
         [{assign var="oNewestArticles" value=$oView->getNewestArticles()}]
