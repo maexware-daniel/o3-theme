@@ -1,7 +1,7 @@
 [{capture append="oxidBlock_content"}]
 
     <h1 class="title-big">
-        [{oxmultilang ident="CHECKOUT"}]
+        [{oxmultilang ident="O3_CHECKOUT"}]
     </h1>
 
     <hr class="hr-big">

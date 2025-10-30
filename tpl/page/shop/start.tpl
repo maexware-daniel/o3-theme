@@ -12,28 +12,52 @@
     [{/if}]
 
     [{block name="start_welcome_text"}]
-        <div class="start__benefits">
-            [{oxifcontent ident="o3benefit1" object="oCont"}]
-                <div class="start__benefits-box">
-                    [{$oCont->oxcontents__oxcontent->value}]
-                </div>
-            [{/oxifcontent}]
-            [{oxifcontent ident="o3benefit2" object="oCont"}]
-                <div class="start__benefits-box">
-                    [{$oCont->oxcontents__oxcontent->value}]
-                </div>
-            [{/oxifcontent}]
-            [{oxifcontent ident="o3benefit3" object="oCont"}]
-                <div class="start__benefits-box">
-                    [{$oCont->oxcontents__oxcontent->value}]
-                </div>
-            [{/oxifcontent}]
-            [{oxifcontent ident="o3benefit4" object="oCont"}]
-                <div class="start__benefits-box">
-                    [{$oCont->oxcontents__oxcontent->value}]
-                </div>
-            [{/oxifcontent}]
-        </div>
+
+        [{assign var="o3benefit1" value=0}]
+        [{oxifcontent ident="o3benefit1" object="oCont"}]
+            [{assign var="o3benefit1" value=1}]
+        [{/oxifcontent}]
+
+        [{assign var="o3benefit2" value=0}]
+        [{oxifcontent ident="o3benefit2" object="oCont"}]
+            [{assign var="o3benefit2" value=1}]
+        [{/oxifcontent}]
+
+        [{assign var="o3benefit3" value=0}]
+        [{oxifcontent ident="o3benefit3" object="oCont"}]
+            [{assign var="o3benefit3" value=1}]
+        [{/oxifcontent}]
+
+        [{assign var="o3benefit4" value=0}]
+        [{oxifcontent ident="o3benefit1" object="oCont"}]
+            [{assign var="o3benefit4" value=1}]
+        [{/oxifcontent}]
+
+        [{if $o3benefit1 || $o3benefit2 || $o3benefit3 || $o3benefit4}]
+            <div class="start__benefits">
+                [{oxifcontent ident="o3benefit1" object="oCont"}]
+                    <div class="start__benefits-box">
+                        [{$oCont->oxcontents__oxcontent->value}]
+                    </div>
+                [{/oxifcontent}]
+                [{oxifcontent ident="o3benefit2" object="oCont"}]
+                    <div class="start__benefits-box">
+                        [{$oCont->oxcontents__oxcontent->value}]
+                    </div>
+                [{/oxifcontent}]
+                [{oxifcontent ident="o3benefit3" object="oCont"}]
+                    <div class="start__benefits-box">
+                        [{$oCont->oxcontents__oxcontent->value}]
+                    </div>
+                [{/oxifcontent}]
+                [{oxifcontent ident="o3benefit4" object="oCont"}]
+                    <div class="start__benefits-box">
+                        [{$oCont->oxcontents__oxcontent->value}]
+                    </div>
+                [{/oxifcontent}]
+            </div>
+        [{/if}]
+
     [{/block}]
 
     [{assign var="fixedBanner" value=$oView->getBanners()}]

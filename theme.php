@@ -22,8 +22,8 @@
  * Theme Information
  */
 $aTheme = array(
-    'id'          => 'o3',
-    'title'       => 'O3',
+    'id'          => 'o3-theme',
+    'title'       => 'O3-Theme',
     'description' => 'O3-Theme is O3-Shops official responsive theme based on the CSS framework Bootstrap 5.',
     'thumbnail'   => 'theme.png',
     'version'     => '1.0.0',
@@ -79,30 +79,6 @@ $aTheme = array(
             'value' => array("12", "16", "24", "32"),
         ),
         array(
-            'group' => 'features',
-            'name'  => 'bl_showCompareList',
-            'type'  => 'bool',
-            'value' => 1,
-        ),
-        array(
-            'group' => 'features',
-            'name'  => 'bl_showGiftWrapping',
-            'type'  => 'bool',
-            'value' => 1,
-        ),
-        array(
-            'group' => 'features',
-            'name'  => 'bl_showListmania',
-            'type'  => 'bool',
-            'value' => 1,
-        ),
-        array(
-            'group' => 'features',
-            'name'  => 'bl_showPriceAlarm',
-            'type'  => 'bool',
-            'value' => 0,
-        ),
-        array(
             'group' => 'display',
             'name'  => 'bl_showManufacturer',
             'type'  => 'bool',
@@ -111,12 +87,6 @@ $aTheme = array(
         array(
             'group' => 'features',
             'name'  => 'bl_showVouchers',
-            'type'  => 'bool',
-            'value' => 1,
-        ),
-        array(
-            'group' => 'features',
-            'name'  => 'bl_showWishlist',
             'type'  => 'bool',
             'value' => 1,
         ),
@@ -227,7 +197,7 @@ $aTheme = array(
             'name'        => 'sDefaultListDisplayType',
             'type'        => 'select',
             'value'       => 'grid',
-            'constraints' => 'line|grid',
+            'constraints' => 'grid',
         ),
         array(
             'group' => 'slider',

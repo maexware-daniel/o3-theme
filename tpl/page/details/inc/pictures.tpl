@@ -27,16 +27,18 @@
                     </svg>
                 </button>
             </div>
-        [{/if}]
-        <div class="splide__track">
-            <div class="splide__list">
-                [{foreach from=$oView->getIcons() key="iPicNr" item="oArtIcon" name="sMorePics"}]
-                    <div class="splide__slide[{if $iPicNr == 1}] active[{/if}]">
-                        <img src="[{$oPictureProduct->getPictureUrl($iPicNr)}]" alt="[{$oPictureProduct->oxarticles__oxtitle->value|strip_tags}] [{$oPictureProduct->oxarticles__oxvarselect->value|strip_tags}]" itemprop="image" class="splide__img">
-                    </div>
-                [{/foreach}]
+            <div class="splide__track">
+                <div class="splide__list">
+                    [{foreach from=$oView->getIcons() key="iPicNr" item="oArtIcon" name="sMorePics"}]
+                        <div class="splide__slide[{if $iPicNr == 1}] active[{/if}]">
+                            <img src="[{$oPictureProduct->getPictureUrl($iPicNr)}]" alt="[{$oPictureProduct->oxarticles__oxtitle->value|strip_tags}] [{$oPictureProduct->oxarticles__oxvarselect->value|strip_tags}]" itemprop="image" class="splide__img">
+                        </div>
+                    [{/foreach}]
+                </div>
             </div>
-        </div>
+        [{else}]
+            <img src="[{$oPictureProduct->getPictureUrl(1)}]" alt="[{$oPictureProduct->oxarticles__oxtitle->value|strip_tags}] [{$oPictureProduct->oxarticles__oxvarselect->value|strip_tags}]" itemprop="image">
+        [{/if}]
     </div>
 
     [{if $oView->morePics()}]

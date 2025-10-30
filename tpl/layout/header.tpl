@@ -12,13 +12,15 @@
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.264 13.559L16.686 11.982c-.418-.418-.985-.653-1.576-.653s-1.158.235-1.576.653l-.789.788c-.207.207-.453.372-.723.484-.27.111-.56.169-.852.169s-.582-.058-.852-.169c-.27-.112-.516-.277-.723-.484l-2.364-2.366c-.418-.418-.653-.985-.653-1.576s.235-1.158.653-1.577l.788-.788c.418-.417.653-.984.653-1.576s-.235-1.158-.653-1.576L6.448 1.734c-.194-.23-.435-.414-.707-.541A2.003 2.003 0 0 0 4.872 1c-.3 0-.597.065-.87.192-.272.127-.513.311-.707.541C-0.847 5.849 1.109 10.601 5.25 14.743c4.14 4.141 8.89 6.1 13.012 1.972.23-.193.414-.435.541-.707.127-.272.192-.569.192-.869 0-.3-.065-.597-.192-.87-.127-.272-.311-.513-.541-.707z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    [{$oxcmp_shop->oxshops__oxtelefon->value}]
+                    <a href="tel:[{$oxcmp_shop->oxshops__oxtelefon->value}]">
+                        [{$oxcmp_shop->oxshops__oxtelefon->value}]
+                    </a>
                 </div>
 
                 [{block name="layout_header_logo"}]
                     [{assign var="slogoImg" value=$oViewConf->getViewThemeParam('sLogoFile')}]
                     <a class="header__logo" href="[{$oViewConf->getHomeLink()}]" title="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]">
-                        <img src="[{$oViewConf->getImageUrl($slogoImg)}]" alt="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]">
+                        <img class="img-fluid" src="[{$oViewConf->getImageUrl($slogoImg)}]" alt="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]">
                     </a>
                 [{/block}]
 
@@ -41,7 +43,9 @@
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.264 13.559L16.686 11.982c-.418-.418-.985-.653-1.576-.653s-1.158.235-1.576.653l-.789.788c-.207.207-.453.372-.723.484-.27.111-.56.169-.852.169s-.582-.058-.852-.169c-.27-.112-.516-.277-.723-.484l-2.364-2.366c-.418-.418-.653-.985-.653-1.576s.235-1.158.653-1.577l.788-.788c.418-.417.653-.984.653-1.576s-.235-1.158-.653-1.576L6.448 1.734c-.194-.23-.435-.414-.707-.541A2.003 2.003 0 0 0 4.872 1c-.3 0-.597.065-.87.192-.272.127-.513.311-.707.541C-0.847 5.849 1.109 10.601 5.25 14.743c4.14 4.141 8.89 6.1 13.012 1.972.23-.193.414-.435.541-.707.127-.272.192-.569.192-.869 0-.3-.065-.597-.192-.87-.127-.272-.311-.513-.541-.707z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                [{$oxcmp_shop->oxshops__oxtelefon->value}]
+                                <a href="tel:[{$oxcmp_shop->oxshops__oxtelefon->value}]">
+                                    [{$oxcmp_shop->oxshops__oxtelefon->value}]
+                                </a>
                             </div>
                         [{/block}]
 
@@ -70,7 +74,7 @@
                 [{block name="layout_header_logo"}]
                     [{assign var="slogoImg" value=$oViewConf->getViewThemeParam('sLogoFile')}]
                     <a class="header__logo" href="[{$oViewConf->getHomeLink()}]" title="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]">
-                        <img src="[{$oViewConf->getImageUrl($slogoImg)}]" alt="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]">
+                        <img class="img-fluid" src="[{$oViewConf->getImageUrl($slogoImg)}]" alt="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]">
                     </a>
                 [{/block}]
 
@@ -145,5 +149,4 @@
     </header>
 [{/block}]
 
-[{insert name="oxid_newbasketitem" tpl="widget/minibasket/newbasketitemmsg.tpl" type="message"}]
 [{oxid_include_dynamic file="widget/minibasket/minibasketmodal.tpl"}]

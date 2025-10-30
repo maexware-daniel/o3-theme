@@ -1,3 +1,13 @@
+//CSS-Fix for Button-Focus
+:root {
+	--bs-btn-focus-shadow-rgb: #{to-rgb($primary)};
+	--bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), 0.5);
+}
+
+html {
+	overflow-x: hidden;
+}
+
 main {
     position: relative;
     margin-bottom: 80px;
@@ -14,18 +24,6 @@ main {
             z-index: 10;
         }
     }
-}
-
-.footer__box,
-.footer__box *::before,
-.footer__box *::after {
-  box-sizing: border-box !important;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: content-box !important;
 }
 
 .title-big {
@@ -170,6 +168,18 @@ main {
         line-height: 1;
         white-space: pre-wrap;
         color: $input-placeholder-color;
+
+		&:after {
+			content:"";
+			display: block;
+			position: absolute;
+			top: 14px;
+			left: 8px;
+			width: calc(100% - 16px);
+			height: 20px;
+			background-color: #fff;
+			z-index: -1;
+		}
     }
 
     > .form-control:focus

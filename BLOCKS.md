@@ -1,6 +1,6 @@
 # Block Comparison Report
 
-## Missing blocks in Theme O3 (20):
+## Missing blocks in Theme O3 (21):
 
 | Block Name | Filepath in Wave |
 |------------|-------------------|
@@ -18,6 +18,7 @@
 | dd_footer_newsletter_form_inner_group | widget/footer/newsletter.tpl |
 | footer_vendors | widget/footer/vendorlist.tpl |
 | categorylist_navbar_minibasket | widget/header/categorylist.tpl |
+| dd_widget_minibasket_new_item_msg | widget/minibasket/newbasketitemmsg.tpl |
 | widget_product_listitem_infogrid | widget/product/listitem_infogrid.tpl |
 | widget_product_listitem_infogrid_shortdesc | widget/product/listitem_infogrid.tpl |
 | widget_product_listitem_infogrid_selections | widget/product/listitem_infogrid.tpl |
@@ -25,7 +26,7 @@
 | widget_product_listitem_infogrid_price_value | widget/product/listitem_infogrid.tpl |
 | widget_product_listitem_infogrid_tobasket | widget/product/listitem_infogrid.tpl |
 
-## Blocks with different files (48):
+## Blocks with different files (47):
 
 | Block Name | Files in O3 | Files in Wave |
 |------------|----------------|-----------------|
@@ -66,7 +67,6 @@
 | checkout_basketcontents_itemerror | page/checkout/inc/basketcontents_list.tpl | page/checkout/inc/basketcontents_list.tpl, page/checkout/inc/basketcontents_table.tpl |
 | checkout_basketcontents_giftwrapping | page/checkout/inc/basketcontents_list.tpl | page/checkout/inc/basketcontents_list.tpl, page/checkout/inc/basketcontents_table.tpl |
 | checkout_basketcontents_basketfunctions | page/checkout/inc/basketcontents_list.tpl | page/checkout/inc/basketcontents_list.tpl, page/checkout/inc/basketcontents_table.tpl |
-| details_tabs_attributes | page/details/inc/tabs.tpl, page/details/inc/tabs.tpl | page/details/inc/tabs.tpl |
 | dd_widget_header_categorylist | widget/header/categorylist.tpl, widget/header/categorylist_offcanvas.tpl | widget/header/categorylist.tpl |
 | dd_widget_header_categorylist_navbar_list | widget/header/categorylist.tpl, widget/header/categorylist_offcanvas.tpl | widget/header/categorylist.tpl |
 | dd_widget_header_categorylist_navbar_header | widget/header/search.tpl | widget/header/categorylist.tpl |

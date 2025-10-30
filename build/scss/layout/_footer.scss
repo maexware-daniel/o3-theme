@@ -28,6 +28,10 @@ footer {
     align-items: center;
     height: 95px;
     border-bottom: 1px solid #28304C;
+
+	img {
+		max-height: 60%;
+	}
 }
 
 .footer__box {
