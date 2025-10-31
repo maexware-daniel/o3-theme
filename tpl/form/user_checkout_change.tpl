@@ -1,6 +1,16 @@
 [{block name="user_checkout_change"}]
-    [{oxscript include="js/widget/shippingaddress.js" priority=10}]
-    [{oxscript include="js/widget/validate.js" priority=10}]
+
+    [{if $oxcmp_shop->oxshops__oxproductive->value}]
+        [{oxscript include="js/widget/shippingaddress.min.js" priority=10}]
+    [{else}]
+        [{oxscript include="js/widget/shippingaddress.js" priority=10}]
+    [{/if}]
+
+    [{if $oxcmp_shop->oxshops__oxproductive->value}]
+        [{oxscript include="js/widget/validate.min.js" priority=10}]
+    [{else}]
+        [{oxscript include="js/widget/validate.js" priority=10}]
+    [{/if}]
 
     <form action="[{$oViewConf->getSslSelfLink()}]" name="order" method="post" class="user needs-validation" novalidate>
         [{block name="user_checkout_change_form"}]

@@ -80,9 +80,9 @@
 
         [{block name="base_style"}]
             [{if $oxcmp_shop->oxshops__oxproductive->value}]
-                [{oxstyle include="css/style.min.css"}]
+                [{oxstyle include="css/main.min.css"}]
             [{else}]
-                [{oxstyle include="css/style.css"}]
+                [{oxstyle include="css/main.css"}]
             [{/if}]
         [{/block}]
 
@@ -143,19 +143,14 @@
 
     [{block name="base_js"}]
         [{if $oxcmp_shop->oxshops__oxproductive->value}]
-            [{oxscript include="js/script.min.js" priority=1}]
+            [{oxscript include="js/main.min.js" priority=1}]
         [{else}]
-            [{oxscript include="js/script.js" priority=1}]
+            [{oxscript include="js/main.js" priority=1}]
         [{/if}]
     [{/block}]
 
     [{if $oViewConf->getViewThemeParam('activateJquery')}]
-        [{oxscript include="vendor/jquery.min.js" priority=1}]
-    [{/if}]
-
-    [{if $oViewConf->isTplBlocksDebugMode()}]
-        [{oxscript include="js/widgets/oxblockdebug.min.js"}]
-        [{oxscript add="$( 'body' ).oxBlockDebug();"}]
+        [{oxscript include="js/jquery.min.js" priority=1}]
     [{/if}]
 
     [{oxscript}]

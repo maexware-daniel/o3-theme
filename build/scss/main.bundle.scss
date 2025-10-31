@@ -2,11 +2,29 @@
 
 @import 'overrides';
 
+// ─────────────────────────────────────────────
+// NODE MODULES
+// ─────────────────────────────────────────────
+
 @import '../../node_modules/bootstrap/scss/bootstrap';
 @import '../../node_modules/@splidejs/splide/src/css/core';
 
+// ─────────────────────────────────────────────
+// FONTS & VARIABLES
+// ─────────────────────────────────────────────
+
 @import 'fontface';
 @import 'variables';
+
+// ─────────────────────────────────────────────
+// MODULES
+// ─────────────────────────────────────────────
+
+//@import '../../../../../modules/Vendor/Modul/out/src/scss/modulstyles.scss';
+
+// ─────────────────────────────────────────────
+// THEME
+// ─────────────────────────────────────────────
 
 @import 'layout/base';
 @import 'layout/header';

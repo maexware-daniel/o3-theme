@@ -1,5 +1,10 @@
 [{assign var="actCategory" value=$oView->getActiveCategory()}]
-[{oxscript include="js/widget/filter.js" priority=10}]
+
+[{if $oxcmp_shop->oxshops__oxproductive->value}]
+    [{oxscript include="js/widget/filter.min.js" priority=10}]
+[{else}]
+    [{oxscript include="js/widget/filter.js" priority=10}]
+[{/if}]
 
 [{capture append="oxidBlock_sidebar"}]
     [{assign var="listType" value=$oView->getListType()}]

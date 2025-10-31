@@ -14,7 +14,12 @@
 
 [{*oxscript add=$sValidationJS*}]
 [{block name="user"}]
-    [{oxscript include="js/widget/shippingaddress.js" priority=10}]
+
+    [{if $oxcmp_shop->oxshops__oxproductive->value}]
+        [{oxscript include="js/widget/shippingaddress.min.js" priority=10}]
+    [{else}]
+        [{oxscript include="js/widget/shippingaddress.js" priority=10}]
+    [{/if}]
 
     <form action="[{$oViewConf->getSelfActionLink()}]" name="order" method="post" class="needs-validation" novalidate>
         [{block name="user_form"}]

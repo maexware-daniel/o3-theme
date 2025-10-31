@@ -200,7 +200,12 @@
 [{block name="form_user_billing_birthdate"}]
     [{if $oViewConf->showBirthdayFields()}]
 
-        [{oxscript include="js/widget/birthdate.js" priority=10}]
+        [{if $oxcmp_shop->oxshops__oxproductive->value}]
+            [{oxscript include="js/widget/birthdate.min.js" priority=10}]
+        [{else}]
+            [{oxscript include="js/widget/birthdate.js" priority=10}]
+        [{/if}]
+
         [{assign var="birthdate_complete" value="`$iBirthdayYear`-`$iBirthdayMonth`-`$iBirthdayDay`"}]
 
         <div class="form-floating mb-3">

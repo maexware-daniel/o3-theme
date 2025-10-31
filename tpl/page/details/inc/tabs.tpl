@@ -40,7 +40,13 @@
 
 [{block name="details_tabs_reviews"}]
     [{if $oView->isReviewActive()}]
-        [{oxscript include="js/widget/rating.js" priority=10}]
+
+        [{if $oxcmp_shop->oxshops__oxproductive->value}]
+            [{oxscript include="js/widget/rating.min.js" priority=10}]
+        [{else}]
+            [{oxscript include="js/widget/rating.js" priority=10}]
+        [{/if}]
+
         [{capture append="tabs"}]<a class="nav-link[{if $blFirstTab}] active[{/if}]" href="#details__reviews" role="tab" data-bs-toggle="tab" aria-controls="details__reviews" aria-selected="[{if $blFirstTab}]true[{else}]false[{/if}]">[{oxmultilang ident="REVIEWS"}] ([{if $oView->getReviews()}][{$oView->getReviews()|count}][{else}]0[{/if}])</a>[{/capture}]
         [{capture append="tabsContent"}]
             <div id="details__reviews" class="details__reviews tab-pane col-12 col-lg-8[{if $blFirstTab}] active[{/if}]" role="tabpanel">

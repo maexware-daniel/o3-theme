@@ -1,105 +1,240 @@
+
 # O3 Theme
 
-## General Information
+## 1. General Information
 
-*O3-Theme* is a responsive theme for all O3-Shop editions.
+**O3 Theme** is a responsive theme for all O3 Shop editions.
 
-## Installation
-If you want to extend the theme you need to clone the repository (see section development) as some soures are ignored on composer installation.
+### Key Features
+- Bootstrap 5.3.8
+- Custom build process (Gulp)
+- PurgeCSS for optimized CSS output
+- SplideJS for sliders
 
-### Step 1: Get the source code
+## 2. Installation
 
-This step is only required if the theme is not delivered with the O3-Shop distribution.
-```
+Choose the appropriate installation method based on your use case.
+
+---
+
+### Method A: Composer Installation (Production)
+
+**Use this method if:** You want to use the theme as-is without modifications.
+
+#### Step 1: Install via Composer
+
+```bash
 composer require o3-shop/o3-theme
 ```
 
-### Step 2: Prepare the database
 
-In order to install the theme options, import the ``setup.sql`` (to be found in ``DOCUMENT_ROOT/source/Application/views/O3``) into your database.
+#### Step 2: Copy Assets to Out Directory
 
-#### Option 1: Console
+```bash
+cp -r <DOCUMENT_ROOT>/source/Application/views/o3-theme/out/o3-theme \
+      <DOCUMENT_ROOT>/source/out/
+```
 
-``mysql -u MYSQL_USER -p SHOP_DATABASE < O3/setup.sql``
+> **Important:**
+> - Copy the entire `o3-theme` directory, not just its contents
+> - The target should be `source/out/o3-theme/`, not `source/out/` directly
 
-#### Option 2: Shop Admin: Service -> Tools
+#### Step 3: Prepare the Database
 
-If you have a local copy of O3 files, go to Service -> Tools in Shop Admin, upload O3/setup.sql and click "start update" button
+In order to install the theme options, import the `setup.sql` (to be found in `source/Application/views/o3-theme`) into your database.
 
-### Step 3: Activate theme
+**Option 1: Command Line**
+```bash
+mysql -u MYSQL_USER -p SHOP_DATABASE < setup.sql
+```
 
-Log into the admin panel, go to *Extensions → Themes → O3* and press the *Activate* button. Clean the cache and off you go!
+**Option 2: Shop Admin Interface**
+1. Log into Shop Admin
+2. Navigate to **Service → Tools**
+3. Upload `source/Application/views/o3-theme/setup.sql`
+4. Click **"Start Update"** button
 
-## Development
+#### Step 3: Activate Theme
 
-All *O3* theme related CSS/Javascript files can be found in theme's ``build`` directory. [Node v20.16.0](https://nodejs.org), [npm v10.9](https://www.npmjs.com) and [Gulp v5.0.0](https://gulpjs.com) are required to generate theme assets during development. **Make sure that you use at least the specified versions in your project**.
+1. Log into Shop Admin
+2. Navigate to **Extensions → Themes**
+3. Find **O3 Theme** and click **Activate**
 
-To get the development files you need to clone the repository
+**✅ Installation complete!** The theme is now active.
 
-    cd DOCUMENT_ROOT/Application/views/
-    git clone -b BRANCH_NAME https://gitlab.o3-shop.com/o3/o3-theme.git o3
+---
 
-1. To use ``gulp``, ``npm`` is required. Check ``nodejs`` website for installation
-   instructions (https://nodejs.org/en/download/package-manager/). Example of
-   Installation on ubuntu system:
+### Method B: Git Clone (Development)
 
-    ```
-    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-    sudo apt-get install -y nodejs
-    ```
+**Use this method if:** You want to customize the theme or develop new features.
 
-2. Install ``gulp`` globally. Example:
+| Requirement | Minimum Version | Notes |
+|------------|----------------|-------|
+| Node.js | v22.13.0 | [Download](https://nodejs.org/) |
+| npm | 10.x | Included with Node.js |
+| Gulp CLI | 3.0.0 | [Download](https://gulpjs.com/) |
 
-    ```
-    npm install --global gulp-cli
-    ```
+#### Step 1: Clone Repository
 
-3. Go to "o3" theme's directory and install all related ``gulp`` plugins:
+```bash
+cd <DOCUMENT_ROOT>/source/Application/views
+git clone https://gitlab.maexware-solutions.de/o3/o3-theme.git
+```
 
-    ```
-    cd DOCUMENT_ROOT/Application/views/o3/
-    npm install
-    ```
-   > When installing node_modules, a warning is displayed ("1 moderate severity vulnerability") due to the old version of Jquery. If you want to change this to a newer version, make sure that you do not have any modules that are based on old Jquery functions.
+#### Step 2: Copy Assets to Out Directory
 
-4. Now its possible to regenerate "o3" theme assets by running ``gulp dev`` or ``gulp prod`` 
-   task while being in "o3" directory.
+```bash
+cp -r <DOCUMENT_ROOT>/source/Application/views/o3-theme/out/o3-theme \
+      <DOCUMENT_ROOT>/source/out/
+```
 
-## More info about the theme
+> **Important:**
+> - Copy the entire `o3-theme` directory, not just its contents
+> - The target should be `source/out/o3-theme/`, not `source/out/` directly
 
-To generate assets during development within ``htdocs/source/out/[THEME]``, you can use ``gulp dev``. The active watcher will regenerate CSS and JavaScript each time you save changes.
+#### Step 3: Install Build Tools
 
-At the end of development, the ``gulp prod`` task should be run. This applies purgeCSS to the generated stylesheets to remove unused CSS. Additionally, assets will be placed not only in ``htdocs/source/out/[THEME]`` but also in ``htdocs/source/Application/views/[THEME]/out``.
+**3.1 Install Node.js & npm**
 
-### Production Mode
-During development, production mode (in Oxid-Admin) should be disabled; otherwise, JavaScript and Stylesheets will load in minified form, and JavaScript and CSS maps will not be available.
+**Ubuntu/Debian:**
+```bash
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
 
-### Bootstrap / jQuery
-The theme uses Bootstrap version 5.3.3, which no longer relies on jQuery. As a result, jQuery has been removed from the theme. If jQuery is needed, it can be enabled in the theme settings. It is the same version as in theme 'wave'. If a different version is required, you can adjust this in package.json.
-> Bootstrap generates "Deprecation Warnings" during the build process. These warnings will no longer appear once Bootstrap is updated to the latest version. However, Bootstrap remains fully usable in this state.
+**Other Systems:**  
+Download from [nodejs.org](https://nodejs.org/)
 
+**Verify Installation:**
+```bash
+node --version  # Should show v22.13.0 or higher
+npm --version   # Should show 10.x or higher
+```
 
-### Slider
-Due to the theme's different slider requirements, [splideJS](https://splidejs.com/) is used instead of Bootstrap Carousel.
+**3.2 Install Gulp CLI Globally**
+```bash
+npm install --global gulp-cli
+```
 
-### Smarty Blocks
-A few blocks are no longer present due to no longer needed TPL files. Additionally, there are now blocks that are present in multiple files. An overview can be found in `BLOCKS.md`.
+**3.3 Install Theme Dependencies**
+```bash
+cd <DOCUMENT_ROOT>/source/Application/views/o3-theme/
+npm install
+```
+
+#### Step 4: Prepare the Database
+
+Import the database setup (same as Composer method):
+
+**Command Line:**
+```bash
+mysql -u MYSQL_USER -p SHOP_DATABASE < setup.sql
+```
+
+**Or via Shop Admin:** Service → Tools → Upload `setup.sql`
+
+#### Step 5: Activate Theme
+
+1. Log into Shop Admin
+2. Navigate to **Extensions → Themes**
+3. Find **O3 Theme** and click **Activate**
+
+**✅ Installation complete!** You can now start developing.
+
+---
+
+## 3. Development
+
+All source files for CSS and JavaScript are located in the `build/` directory.
+
+### Available Commands
+
+Run these commands from the theme root directory:
+
+| Command | Description | Use Case |
+|---------|-------------|----------|
+| `gulp` | Production build | Minified JS/CSS with PurgeCSS |
+| `gulp dev` | Development watcher | Auto-rebuild on changes + TMP cleanup |
+
+### Development Workflow
+
+**Start the watcher:**
+```bash
+gulp dev
+```
+
+> **💡 Tip:** Disable **Production Mode** in OXID Admin during development to keep source maps and unminified assets.
+>
+> Master Data → Basic Settings → Basic → Production mode → Off
+
+The watcher monitors:
+- `build/js/**/*.js` → Rebuilds JavaScript bundles
+- `build/scss/**/*.scss` → Rebuilds CSS
+- `**/*.tpl` → Clears OXID TMP directory
+- `Application/translations/**/*.php` → Clears OXID TMP directory
+
+**Production build:**
+```bash
+gulp
+```
+
+This will:
+- Minify JavaScript and CSS
+- Remove unused CSS with PurgeCSS
+- Optimize assets for production
+
+### PurgeCSS Safelist
+
+PurgeCSS removes unused CSS classes. If you dynamically generate class names in JavaScript or templates, add them to the safelist.
+
+**Example dynamic classes:**
+```smarty
+{* Template with dynamic class *}
+<div class="[{$type}]-view"></div>
+```
+
+**Add to safelist in `gulpfile.js`:**
+```javascript
+safelist: [
+    'grid-view',    // Add your dynamic classes here
+    'line-view',
+    /^custom-/,        // Or use patterns
+]
+```
+
+**Location:** Line ~81 in `gulpfile.js` in the PurgeCSS configuration.
+
+---
+
+## 5. Asset Integration
 
 ### JavaScript
-The files in `build/js` are combined into `main.js` using Gulp. Files in `build/js/widget` are not combined; they are loaded individually, but only when needed.
+- Main JS bundle:   
+  ``<DOCUMENT_ROOT>/source/Application/views/o3-theme/build/js/main.bundle.js``
+- ``import`` new scripts here to include them in the **main JS**.
+- Files in `build/js/widgets/` are standalone and must be explicitly loaded in templates:
+  ``[{oxscript include="js/widgets/checkagb.js" priority=10}]``
+> JavaScript from modules can also be integrated into ``main.bundle.js``. Descriptions and examples can be found in the bundle-file.
 
-### Tooltips
-Bootstrap’s tooltips are not active by default. Instead, the data-tooltip attribute can be used, for which stylesheets are set up. To use Bootstrap’s tooltips, they must be initialized. For more information, refer to [Bootstrap](https://getbootstrap.com/docs/5.3/components/tooltips/)
+### SCSS
 
-## Contributing
 
-If you are interested in contributing of some changes, Please read [CONTRIBUTING.md](CONTRIBUTING.md) file for more information.
+- Main SCSS bundle:  
+  ``<DOCUMENT_ROOT>/source/Application/views/o3-theme/build/scss/main.bundle.scss``
+- ``@import`` new styles here to include them globally.
 
-## Compatibility with modules
+> CSS/SCSS from the modules can also be integrated into ``main.bundle.scss``. Descriptions and examples can be found in the bundle-file.
 
-1. PayPal module
-- The PayPal module contains in a tpl file a check for the theme id ```[{if $oViewConf->getActiveTheme()=='flow'}]``` which should be adjusted to O3
+---
 
-## Issues
+## 6. jQuery
 
-Please forward all issues to https://issues.o3-shop.com/ for the project **O3 Theme**.
+- This theme uses Bootstrap 5.3.8, which means that vanilla JS is used instead of jQuery.
+- If jQuery is absolutely necessary, enable it in theme settings (same version as theme wave).
+- Deprecation warnings during build are harmless and will disappear when updating Bootstrap.
+
+
+## 7. Compatibility with PayPal
+The PayPal module checks the active theme ID in one of its templates:
+``[{if $oViewConf->getActiveTheme()=='flow'}]`` 
+Change ``'flow'`` to ``'o3-theme'`` for compatibility.
