@@ -1,241 +1,218 @@
-import gulp from 'gulp';
-import gulpSass from 'gulp-sass';
-import * as sass from 'sass';
-import terser from 'gulp-terser';
-import concat from 'gulp-concat';
-import cleanCSS from 'gulp-clean-css';
-import purgecss from 'gulp-purgecss';
-import autoprefixer from 'gulp-autoprefixer';
-import { deleteAsync } from 'del';
-import postcss from 'gulp-postcss';
-import sortMq from 'postcss-sort-media-queries';
-import plumber from 'gulp-plumber';
-import rename from 'gulp-rename';
-import newer from 'gulp-newer';
-import presetEnv from 'postcss-preset-env';
-import notify from 'gulp-notify';
-import fs from 'fs';
-import compareBlocks from './gulp-compare-blocks.js';
+const { src, dest, series, parallel, watch } = require('gulp');
+const esbuild = require('esbuild');
+const sass = require('gulp-dart-sass');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const cleanCSS = require('gulp-clean-css');
+const rename = require('gulp-rename');
+const purgecss = require('@fullhuman/postcss-purgecss').default;
+const { deleteAsync } = require('del');
+const glob = require('glob');
+const path = require('path');
 
-const sassCompiler = gulpSass(sass);
-
-const themeName = 'o3-theme';
+const theme = 'o3-theme';
 
 const paths = {
-    scss: `./build/scss/**/*.scss`,
-    js: [`./build/js/**/*.js`, `!./build/js/widget/**/*.js`],
-    widgetJS: `./build/js/widget/**/*.js`,
-    bootstrapJS: `./node_modules/bootstrap/dist/js/bootstrap.bundle.js`,
-    splideJS: `./node_modules/@splidejs/splide/dist/js/splide.js`,
-    splideMinJS: `./node_modules/@splidejs/splide/dist/js/splide.min.js`,
-    jquery: `./node_modules/jquery/dist/jquery.min.js`,
-    fonts: `./build/font/**/*`,
-    favicon: `./build/favicon/**/*`,
-    images: `./build/img/**/*`,
-    templates: `./tpl/**/*.tpl`,
-    translationDE: `./de/**/*.php`,
-    translationEN: `./en/**/*.php`,
-    thumbnail: `./build/theme.png`,
-    themeRootOut: `./out`,
-    tmp: `../../../tmp`,
-    projectRootOut: `../../../out`
+    jsEntry: './build/js/main.bundle.js',
+    scssEntry: './build/scss/main.bundle.scss',
+    widgetJS: './build/js/widget/**/*.js',
+    outDir: `../../../out/${theme}/src`,
+    tmpDir: '../../../tmp/**/*',
+    watchPaths: {
+        themeJS: './build/js/**/*.js',
+        themeScss: './build/scss/**/*.scss',
+        moduleJS: '../../../modules/**/out/src/js/**/*.js',
+        moduleScss: '../../../modules/**/out/src/scss/**/*.scss',
+        themeTpl: './tpl/**/*.tpl',
+        themeTranslations: ['./de/**/*.php', './en/**/*.php'],
+        moduleTpl: '../../../modules/**/Application/views/**/*.tpl',
+        moduleTranslations: '../../../modules/**/Application/translations/**/*.php'
+    }
 };
 
-// Error-Handling-Funktion
-function onError(err) {
-    const errorMessage = `${err.message}\n`;
-
-    // Konsolenausgabe
-    console.log(errorMessage);
-
-    // Benachrichtigung (optional)
-    notify.onError({
-        title: 'Gulp Task Error',
-        message: errorMessage,
-        sound: 'Basso' // MacOS only, optional
-    })(err);
-
-    // Fehler-Logs in Datei schreiben
-    fs.appendFileSync('gulp-error-log.txt', errorMessage);
-
-    this.emit('end');
+// ─────────────────────────────────────────────
+// Widget JS: Copy (für dev und prod)
+function copyWidgetJS() {
+    return src(paths.widgetJS)
+        .pipe(dest(`${paths.outDir}/js/widget`))
+        .on('end', () => {
+            console.log('✅ Widget JS-Files kopiert');
+        });
 }
 
-// Clean-Aufgabe für dev (löscht nur den Inhalt des tmp-Verzeichnisses)
-gulp.task('clean:dev', () => {
-    return deleteAsync([`${paths.tmp}/**/*`], { force: true });
-});
+// Widget JS: Minify (nur für prod)
+async function minifyWidgetJS() {
+    try {
+        const files = glob.sync(paths.widgetJS);
 
-// Clean-Aufgabe für prod (löscht den Inhalt des out-Verzeichnisses und des theme-Verzeichnisses in projectRootOut)
-gulp.task('clean:prod', () => {
-    return deleteAsync([`${paths.tmp}/**/*`, `${paths.themeRootOut}`, `${paths.projectRootOut}/${themeName}`], { force: true });
-});
+        for (const file of files) {
+            const relativePath = path.relative('./build/js/widget', file);
+            const outputPath = path.join(`${paths.outDir}/js/widget`, relativePath.replace('.js', '.min.js'));
 
-// SCSS kompilieren und CSS-Dateien für DEV
-gulp.task('styles:dev', () => {
-    return gulp.src(paths.scss, { sourcemaps: true })
-        .pipe(plumber({ errorHandler: onError }))
-        .pipe(sassCompiler().on('error', sassCompiler.logError))
-        .pipe(autoprefixer())
-        .pipe(concat('style.css'))
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}/src/css`, { sourcemaps: '.' }));
-});
+            await esbuild.build({
+                entryPoints: [file],
+                bundle: false,
+                minify: true,
+                sourcemap: false,
+                outfile: outputPath,
+                target: ['es2020'],
+            });
+        }
+        console.log('✅ Widget JS-Files minifiziert');
+    } catch (err) {
+        console.error('❌ Fehler beim Minifizieren der Widget JS-Files:', err);
+        throw err;
+    }
+}
 
-// SCSS kompilieren und minifizieren für PROD
-gulp.task('styles:prod', () => {
-    // Unminifizierte Datei mit Sourcemap
-    const unminified = gulp.src(paths.scss, { sourcemaps: true })
-        .pipe(plumber({ errorHandler: onError }))
-        .pipe(sassCompiler().on('error', sassCompiler.logError))
-        .pipe(autoprefixer())
-        .pipe(postcss([sortMq(), presetEnv({ stage: 2 })]))
-        .pipe(rename('style.css'))
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}/src/css`, { sourcemaps: '.' }))
-        .pipe(gulp.dest(`${paths.themeRootOut}/${themeName}/src/css`, { sourcemaps: '.' }));
+// ─────────────────────────────────────────────
+// PostCSS Plugins
+const postcssDevPlugins = [autoprefixer()];
+const postcssProdPlugins = [
+    autoprefixer(),
+    purgecss({
+        content: [
+            './tpl/**/*.tpl',
+            './build/js/**/*.js',
+            '../../../modules/**/Application/views/**/*.tpl',
+            '../../../modules/**/out/src/js/**/*.js',
+        ],
+        safelist: [
+            /^splide/, /^is-/, /backdrop/, /grid-view/, /line-view/, /btn-light/
+        ],
+        defaultExtractor: content => content.match(/[\w-/:.]+(?<!:)/g) || [],
+    })
+];
 
-    // Minifizierte Datei ohne Sourcemap
-    const minified = gulp.src(paths.scss)
-        .pipe(plumber({ errorHandler: onError }))
-        .pipe(sassCompiler().on('error', sassCompiler.logError))
-        .pipe(autoprefixer())
-        .pipe(postcss([sortMq(), presetEnv({ stage: 2 })]))
-        .pipe(purgecss({
-            content: [
-                `tpl/**/*.tpl`,
-                `build/js/**/*.js`
-            ],
-            safelist: {
-                standard: [/^splide/, /^is-/, /backdrop/, /grid-view/, /btn-light/]
-            }
-        }))
+// ─────────────────────────────────────────────
+// JS: Dev (.js + .map)
+async function buildDevJS() {
+    try {
+        await esbuild.build({
+            entryPoints: [paths.jsEntry],
+            bundle: true,
+            minify: false,
+            sourcemap: true,
+            outfile: `${paths.outDir}/js/main.js`,
+            target: ['es2020'],
+        });
+        console.log('✅ main.js (dev) erstellt');
+    } catch (err) {
+        console.error('❌ Fehler bei main.js (dev):', err);
+        throw err;
+    }
+}
+
+// JS: Prod (.min.js)
+async function buildProdJS() {
+    try {
+        await esbuild.build({
+            entryPoints: [paths.jsEntry],
+            bundle: true,
+            minify: true,
+            sourcemap: false,
+            outfile: `${paths.outDir}/js/main.min.js`,
+            target: ['es2020'],
+        });
+        console.log('✅ main.min.js (prod) erstellt');
+    } catch (err) {
+        console.error('❌ Fehler bei main.min.js (prod):', err);
+        throw err;
+    }
+}
+
+// ─────────────────────────────────────────────
+// CSS: Dev (.css + .map)
+function buildDevCSS() {
+    return src(paths.scssEntry, { sourcemaps: true })
+        .pipe(sass.sync({
+            outputStyle: 'expanded'
+        }).on('error', sass.logError))
+        .pipe(postcss(postcssDevPlugins))
+        .pipe(rename({ basename: 'main' }))
+        .pipe(dest(`${paths.outDir}/css`, { sourcemaps: '.' }))
+        .on('end', () => {
+            console.log('✅ main.css (dev) mit Sourcemap erstellt');
+        });
+}
+
+// CSS: Prod (.min.css + Purge)
+function buildProdCSS() {
+    return src(paths.scssEntry)
+        .pipe(sass.sync().on('error', sass.logError))
+        .pipe(postcss(postcssProdPlugins))
         .pipe(cleanCSS())
-        .pipe(rename('style.min.css'))
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}/src/css`))
-        .pipe(gulp.dest(`${paths.themeRootOut}/${themeName}/src/css`));
+        .pipe(rename({ basename: 'main', suffix: '.min' }))
+        .pipe(dest(`${paths.outDir}/css`))
+        .on('end', () => {
+            console.log('✅ main.min.css (prod) erstellt');
+        });
+}
 
-    return Promise.all([unminified, minified]);
-});
+// ─────────────────────────────────────────────
+// TMP leeren bei Template- oder Sprachänderung
+async function cleanTmp() {
+    try {
+        await deleteAsync(paths.tmpDir, { force: true });
+        console.log('🧹 tmp/ geleert wegen Template- oder Sprachänderung');
+    } catch (err) {
+        console.error('❌ Fehler beim Leeren von tmp/:', err);
+        throw err;
+    }
+}
 
-// Javascript für DEV
-gulp.task('scripts:dev', () => {
-    return gulp.src([paths.bootstrapJS, ...paths.js], { sourcemaps: true })
-        .pipe(plumber({ errorHandler: onError }))
-        .pipe(concat('script.js'))
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}/src/js`, { sourcemaps: '.' }));
-});
+// ─────────────────────────────────────────────
+// Watcher für DEV
+function watchDev() {
+    const { watchPaths } = paths;
 
-// Javascript minifizieren für PROD
-gulp.task('scripts:prod', () => {
-    const allJsFiles = [paths.bootstrapJS, ...paths.js];
+    // Theme - JS
+    watch(watchPaths.themeJS, async function() {
+        console.log('🔄 Änderung in JS erkannt → baue main.js');
+        await buildDevJS();
+    });
 
-    // Unminifizierte Datei mit Sourcemap
-    const unminified = gulp.src(allJsFiles, { sourcemaps: true })
-        .pipe(plumber({ errorHandler: onError }))
-        .pipe(concat('script.js')) // Zusammenführen aller Dateien
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}/src/js`, { sourcemaps: '.' }))
-        .pipe(gulp.dest(`${paths.themeRootOut}/${themeName}/src/js`, { sourcemaps: '.' }));
+    // Theme - SCSS
+    watch(watchPaths.themeScss, async function() {
+        console.log('🎨 Änderung in SCSS erkannt → baue main.css');
+        await buildDevCSS();
+    });
 
-    // Minifizierte Datei ohne Sourcemap
-    const minified = gulp.src(allJsFiles)
-        .pipe(plumber({ errorHandler: onError }))
-        .pipe(concat('script.js'))
-        .pipe(terser({ ecma: 2015 }))
-        .pipe(rename('script.min.js'))
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}/src/js`))
-        .pipe(gulp.dest(`${paths.themeRootOut}/${themeName}/src/js`));
+    // Theme - JS-Widget
+    watch(paths.widgetJS, async function() {
+        console.log('🔄 Änderung in Widget-JS erkannt → kopiere Widget-JS');
+        await copyWidgetJS();
+    });
 
-    return Promise.all([unminified, minified]);
-});
+    // Module - JS
+    watch(watchPaths.moduleJS, async function() {
+        console.log('🔄 Änderung in Modul-JS erkannt → baue main.js');
+        await buildDevJS();
+    });
 
-// Widget-JavaScript-Dateien für DEV
-gulp.task('widgets:dev', () => {
-    return gulp.src(paths.widgetJS)
-        .pipe(plumber({ errorHandler: onError }))
-        .pipe(newer(`${paths.projectRootOut}/${themeName}/src/js/widget`)) // Nur neue/aktualisierte Dateien kopieren
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}/src/js/widget`));
-});
+    // Module - SCSS
+    watch(watchPaths.moduleScss, async function() {
+        console.log('🎨 Änderung in Modul-SCSS erkannt → baue main.css');
+        await buildDevCSS();
+    });
 
-// Widget-JavaScript-Dateien für PROD
-gulp.task('widgets:prod', () => {
-    return gulp.src(paths.widgetJS)
-        .pipe(plumber({ errorHandler: onError }))
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}/src/js/widget`))
-        .pipe(gulp.dest(`${paths.themeRootOut}/${themeName}/src/js/widget`));
-});
+    // Templates & Translations
+    watch(watchPaths.themeTpl, cleanTmp);
+    watch(watchPaths.themeTranslations, cleanTmp);
+    watch(watchPaths.moduleTpl, cleanTmp);
+    watch(watchPaths.moduleTranslations, cleanTmp);
+}
 
-// Images kopieren für DEV
-gulp.task('images:dev', () => {
-    return gulp.src(paths.images, {encoding: false})
-        .pipe(newer(`${paths.projectRootOut}/${themeName}/img`)) // Nur neue/aktualisierte Dateien kopieren
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}/img`));
-});
+// ─────────────────────────────────────────────
+// Task-Gruppen
+exports.dev = series(
+    parallel(buildDevJS, buildDevCSS, copyWidgetJS),
+    watchDev
+);
 
-// Images kopieren für PROD
-gulp.task('images:prod', () => {
-    return gulp.src(paths.images, {encoding: false})
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}/img`))
-        .pipe(gulp.dest(`${paths.themeRootOut}/${themeName}/img`));
-});
+exports.prod = series(
+    parallel(buildDevJS, buildProdJS, buildDevCSS, buildProdCSS, copyWidgetJS, minifyWidgetJS)
+);
 
-// Favicons kopieren für PROD
-gulp.task('favicon:prod', () => {
-    return gulp.src(paths.favicon, {encoding: false})
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}/src/favicon`))
-        .pipe(gulp.dest(`${paths.themeRootOut}/${themeName}/src/favicon`));
-});
-
-// Fonts kopieren für DEV
-gulp.task('fonts:dev', () => {
-    return gulp.src(paths.fonts, {encoding: false})
-        .pipe(newer(`${paths.projectRootOut}/${themeName}/src/font`)) // Nur neue/aktualisierte Dateien kopieren
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}/src/font`));
-});
-
-// Fonts kopieren für PROD
-gulp.task('fonts:prod', () => {
-    return gulp.src(paths.fonts, {encoding: false})
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}/src/font`))
-        .pipe(gulp.dest(`${paths.themeRootOut}/${themeName}/src/font`));
-});
-
-// Vendor kopieren für DEV
-gulp.task('vendor:dev', () => {
-    return gulp.src([paths.jquery, paths.splideJS, paths.splideMinJS]) // Beide Splide-Dateien und jQuery kopieren
-        .pipe(newer(`${paths.projectRootOut}/${themeName}/src/vendor`)) // Nur neue/aktualisierte Dateien kopieren
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}/src/vendor`));
-});
-
-// Vendor kopieren für PROD
-gulp.task('vendor:prod', () => {
-    return gulp.src([paths.jquery, paths.splideJS, paths.splideMinJS]) // Beide Splide-Dateien und jQuery kopieren
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}/src/vendor`))
-        .pipe(gulp.dest(`${paths.themeRootOut}/${themeName}/src/vendor`));
-});
-
-// theme.png kopieren für PROD
-gulp.task('thumbnail:prod', () => {
-    return gulp.src(paths.thumbnail, {encoding: false})
-        .pipe(gulp.dest(`${paths.projectRootOut}/${themeName}`))
-        .pipe(gulp.dest(`${paths.themeRootOut}/${themeName}`));
-});
-
-gulp.task('blocks', async () => {
-    await compareBlocks();
-});
-
-// Watch task für die DEV
-gulp.task('watch', () => {
-    gulp.watch(paths.scss, gulp.series('styles:dev'));
-    gulp.watch(paths.js, gulp.series('scripts:dev'));
-    gulp.watch(paths.widgetJS, gulp.series('widgets:dev'));
-    gulp.watch(paths.templates, gulp.series('clean:dev'));
-    gulp.watch(paths.images, gulp.series('images:dev'));
-    gulp.watch(paths.translationDE, gulp.series('clean:dev'));
-    gulp.watch(paths.translationEN, gulp.series('clean:dev'));
-});
-
-// Development Task
-gulp.task('dev', gulp.series('clean:dev', 'styles:dev', 'scripts:dev', 'widgets:dev', 'fonts:dev', 'images:dev', 'vendor:dev', 'watch'));
-
-// Production Task
-gulp.task('prod', gulp.series('clean:prod', 'styles:prod', 'scripts:prod', 'widgets:prod', 'fonts:prod', 'thumbnail:prod', 'images:prod', 'vendor:prod', 'favicon:prod', 'blocks'));
+// Standard: Produktions-Build
+exports.default = exports.prod;

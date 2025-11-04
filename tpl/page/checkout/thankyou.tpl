@@ -1,11 +1,7 @@
 [{capture append="oxidBlock_content"}]
 
     [{block name="checkout_thankyou_main"}]
-        [{if $oxcmp_shop->oxshops__oxproductive->value}]
-            [{oxscript include="vendor/splide.min.js" priority=1}]
-        [{else}]
-            [{oxscript include="vendor/splide.js" priority=1}]
-        [{/if}]
+
         [{assign var="order" value=$oView->getOrder()}]
         [{assign var="basket" value=$oView->getBasket()}]
 

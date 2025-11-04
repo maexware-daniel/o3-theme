@@ -145,7 +145,11 @@
     [{block name="details_productmain_variantselections"}]
         [{if $aVariantSelections && $aVariantSelections.selections}]
 
-            [{oxscript include="js/widget/variants.js" priority=10}]
+            [{if $oxcmp_shop->oxshops__oxproductive->value}]
+                [{oxscript include="js/widget/variants.min.js" priority=10}]
+            [{else}]
+                [{oxscript include="js/widget/variants.js" priority=10}]
+            [{/if}]
 
             [{assign var="blCanBuy" value=$aVariantSelections.blPerfectFit}]
             [{if !$blHasActiveSelections}]

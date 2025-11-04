@@ -1,5 +1,11 @@
 [{* basket contents *}]
-[{oxscript include="js/widget/validate.js" priority=10}]
+
+[{if $oxcmp_shop->oxshops__oxproductive->value}]
+    [{oxscript include="js/widget/validate.min.js" priority=10}]
+[{else}]
+    [{oxscript include="js/widget/validate.js" priority=10}]
+[{/if}]
+
 [{assign var="currency" value=$oView->getActCurrency()}]
 
 <form name="basket[{$basketindex}]" action="[{$oViewConf->getSelfActionLink()}]" method="post" class="basket__articles" data-js="tobasket-change">

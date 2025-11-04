@@ -1,5 +1,8 @@
-[{oxscript include="js/widget/validate.js" priority=10}]
-
+[{if $oxcmp_shop->oxshops__oxproductive->value}]
+    [{oxscript include="js/widget/validate.min.js" priority=10}]
+[{else}]
+    [{oxscript include="js/widget/validate.js" priority=10}]
+[{/if}]
 
 [{assign var="aRegParams" value=$oView->getRegParams()}]
 <form action="[{$oViewConf->getSslSelfLink()}]" method="post" class="needs-validation" novalidate>

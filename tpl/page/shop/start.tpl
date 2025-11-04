@@ -1,9 +1,5 @@
 [{capture append="oxidBlock_content"}]
-    [{if $oxcmp_shop->oxshops__oxproductive->value}]
-        [{oxscript include="vendor/splide.min.js" priority=1}]
-    [{else}]
-        [{oxscript include="vendor/splide.js" priority=1}]
-    [{/if}]
+
     [{assign var="oConfig" value=$oViewConf->getConfig()}]
     [{assign var='rsslinks' value=$oView->getRssLinks()}]
 

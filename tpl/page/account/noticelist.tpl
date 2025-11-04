@@ -1,6 +1,11 @@
 [{capture append="oxidBlock_content"}]
     [{assign var="template_title" value="MY_WISH_LIST"|oxmultilangassign}]
-    [{oxscript include="js/widget/remove-from-notice.js" priority=10}]
+
+    [{if $oxcmp_shop->oxshops__oxproductive->value}]
+        [{oxscript include="js/widget/remove-from-notice.min.js" priority=10}]
+    [{else}]
+        [{oxscript include="js/widget/remove-from-notice.js" priority=10}]
+    [{/if}]
 
     <div class="row">
 

@@ -1,5 +1,10 @@
 [{capture append="oxidBlock_content"}]
-    [{oxscript include="js/widget/check-agb.js" priority=10}]
+
+    [{if $oxcmp_shop->oxshops__oxproductive->value}]
+        [{oxscript include="js/widget/check-agb.min.js" priority=10}]
+    [{else}]
+        [{oxscript include="js/widget/check-agb.js" priority=10}]
+    [{/if}]
 
     <h1 class="title-big">
         [{oxmultilang ident="O3_CHECKOUT"}]
