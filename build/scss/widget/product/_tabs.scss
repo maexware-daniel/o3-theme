@@ -1,6 +1,6 @@
 .nav-tabs {
-    justify-content: left;
-    margin: 0px 0px 25px;
+    justify-content: center;
+    margin: 0 auto 48px;
 
     .nav-link {
         font-weight: 600;
@@ -28,7 +28,7 @@
 
     & > .tab-pane {
         display: block;
-        margin: 0 0 40px;
+        margin-bottom: 40px;
 
         @include media-breakpoint-up(md) {
             &:not(.active) {
