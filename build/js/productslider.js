@@ -1,6 +1,6 @@
-function initProductSlider(listId) {
-    let splide = new Splide(`.component__productslider-${listId}`);
-    let bar = splide.root.querySelector('.splide__progress-bar');
+function initProductSlider(element, listId) {
+    let splide = new Splide(element);
+    let bar = element.querySelector('.splide__progress-bar');
 
     splide.on('mounted move', function () {
         let end = splide.Components.Controller.getEnd() + 1;
@@ -10,3 +10,14 @@ function initProductSlider(listId) {
 
     splide.mount();
 }
+
+function initAllProductSliders() {
+    document.querySelectorAll('[class*="component__productslider-"][data-list-id]').forEach(element => {
+        const listId = element.dataset.listId;
+        initProductSlider(element, listId);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initAllProductSliders);
+
+window.initAllProductSliders = initAllProductSliders;
