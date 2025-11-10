@@ -111,6 +111,7 @@ $aLang = [
     // Listen
     'DD_LISTLOCATOR_FILTER_ATTRIBUTES'                      => 'Filter',
     'DD_LIST_SHOW_MORE'                                     => 'Produkte ansehen',
+    'O3_LESS'                                               => 'Weniger',
 
     // Lieblingslisten
     'DD_RECOMMENDATION_EDIT_BACK_TO_LIST'                   => 'zurück zur Übersicht',

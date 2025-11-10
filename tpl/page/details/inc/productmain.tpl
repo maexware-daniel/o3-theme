@@ -59,9 +59,9 @@
         <meta itemprop="brand" content="[{$oManufacturer->oxmanufacturers__oxtitle->value}]">
     [{/if}]
 
-    [{if $oView->ratingIsActive() && $oView->getReviews()}]
+    [{if $oView->ratingIsActive()}]
         [{block name="details_productmain_ratings"}]
-            [{include file="widget/reviews/rating.tpl" itemid="anid=`$oDetailsProduct->oxarticles__oxnid->value`" sRateUrl=$oDetailsProduct->getLink()}]
+            [{include file="widget/reviews/rating.tpl" iRatingValue=$oView->getRatingValue() iRatingCount=$oView->getRatingCount() id=$oDetailsProduct->oxarticles__oxid->value}]
         [{/block}]
     [{/if}]
 

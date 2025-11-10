@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Open and scroll to tab "Reviews" from top of page
-    const openReviewsTab = document.querySelector('.details__info-rating');
+    const openReviewsTab = document.querySelector('.component__rating');
 
     if (openReviewsTab) {
         openReviewsTab.addEventListener('click', function(event) {
