@@ -20,12 +20,12 @@
     [{/block}]
 
     [{if $products && !empty($products)}]
-        <div class="d-flex flex-wrap[{if $listId == "productList" && $oView->getAttributes()}] col-12 col-md-9[{else}] col-12[{/if}] [{$type}]-view" data-listing="[{$listId}]">
+        <div class="[{if $type == "grid"}]d-flex flex-wrap [{/if}]col-12[{if $listId == "productList" && $oView->getAttributes()}] col-lg-9[{/if}] h-max-content" data-listing="[{$listId}]">
             [{foreach from=$products item="_product" name="productlist"}]
 
                 [{assign var="testid" value=$listId|cat:"_"|cat:$smarty.foreach.productlist.iteration}]
                 [{block name="widget_product_list_item"}]
-                    <div class="component__productbox col-12[{if $type != 'line'}] col-sm-6 [{if $listId == "productList" && $oView->getAttributes()}]col-md-4[{else}]col-md-3[{/if}][{/if}]">
+                    <div class="component__productbox[{if $type != 'line'}] col-12 col-sm-6[{if $listId == "productList" && $oView->getAttributes()}] col-md-4[{else}] col-md-3[{/if}][{else}] border-bottom[{/if}]">
                         [{oxid_include_widget cl="oxwArticleBox" _parent=$oView->getClassName() nocookie=1 _navurlparams=$oViewConf->getNavUrlParams() iLinkType=$_product->getLinkType() _object=$_product anid=$_product->getId() sWidgetType=product sListType=listitem_$type iIndex=$testid blDisableToCart=$blDisableToCart isVatIncluded=$oView->isVatIncluded() showMainLink=$showMainLink recommid=$recommid owishid=$owishid toBasketFunction=$toBasketFunction removeFunction=$removeFunction altproduct=$altproduct inlist=$_product->isInList() skipESIforUser=1 testid=$testid}]
                     </div>
                 [{/block}]

@@ -47,7 +47,7 @@
 
         <div class="alist__orga[{if !$oView->hasVisibleSubCats()}] empty[{/if}]">
             [{if $oView->hasVisibleSubCats()}]
-                <div class="alist__subcats">
+                <div class="alist__orga-subcats">
                     [{foreach from=$oView->getSubCatList() item=category name=MoreSubCat}]
 
                         [{if $category->getContentCats()}]
@@ -69,7 +69,7 @@
             [{/if}]
 
             [{if $oView->getAttributes()}]
-                <button type="button" class="btn btn-primary btn-lg d-md-none" data-bs-toggle="offcanvas" data-bs-target="#offcanvas__filter" aria-controls="offcanvas__filter">
+                <button type="button" class="btn btn-primary btn-lg d-lg-none w-100" data-bs-toggle="offcanvas" data-bs-target="#offcanvas__filter" aria-controls="offcanvas__filter">
                     <svg width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 4.5V1H15.5V4.5L10 9.5V19L6 16V9.5L1 4.5Z" stroke="white" stroke-width="1.5"/>
                     </svg>
@@ -86,24 +86,9 @@
                 </div>
             </div>
 
-            [{*
-            <div class="modal fade" id="modal__attributes" tabindex="-1" aria-labelledby="modal__attributes" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title">Modal title</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            [{include file="widget/locator/attributes.tpl" attributes=$oView->getAttributes()}]
-                        </div>
-                    </div>
-                </div>
-            </div>
-            *}]
             [{if $oView->getArticleList()}]
                 [{block name="page_list_upperlocator"}]
-                    [{include file="widget/locator/listlocator.tpl" locator=$oView->getPageNavigationLimitedTop() listDisplayType=false  sort=true}]
+                    [{include file="widget/locator/listlocator.tpl" locator=$oView->getPageNavigationLimitedTop() listDisplayType=true  sort=true}]
                 [{/block}]
             [{/if}]
         </div>
@@ -113,9 +98,8 @@
     [{block name="page_list_listbody"}]
         [{if $oView->getArticleList()}]
 
-            <hr class="d-none d-md-block">
+            <hr class="d-none d-lg-block">
 
-            [{* List types: grid|line *}]
             [{block name="page_list_productlist"}]
                 <div class="row">
                     [{if $oView->getAttributes()}]

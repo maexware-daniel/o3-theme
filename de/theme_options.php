@@ -79,6 +79,9 @@ $aLang = array(
     'SHOP_THEME_bl_showCompareList'                 => 'Artikelvergleich aktivieren',     //SHOP_CONFIG_SHOWCOMPARELIST
     'SHOP_THEME_bl_showListmania'                   => 'Lieblingslisten aktivieren',      //SHOP_CONFIG_SHOWLISTMANIA
     'SHOP_THEME_blShowBirthdayFields'               => 'Eingabefeld für das Geburtsdatum anzeigen, wenn Benutzer ihre Daten eingeben', //SHOP_CONFIG_SHOWBIRTHDAYFIELDS
+    'SHOP_THEME_blShowFilters'                      => 'Filter aufgeklappt anzeigen',
+    'SHOP_THEME_blShowFiltersSearch'                => 'Maximale Anzahl der Filter-Werte (bevor Mehr-Button)',
+    'HELP_SHOP_THEME_blShowFiltersSearch'           => 'Wird dieser Wert von der Anzahl an möglichen Filter-Werten überschritten, werden die restlichen Filter-Werte verborgen, können aber durch einen Button darunter aufgeklappt werden. Außerdem wird eine Suche für diesen Filter angezeigt.',
 
     'SHOP_THEME_blPrimaryColor'                     => 'Primärfarbe',
     'SHOP_THEME_blSecondaryColor'                   => 'Sekundärfarbe',
@@ -128,7 +131,10 @@ $aLang = array(
     'SHOP_THEME_sGoogleMapsAddr'                    => 'Ihre Adresse',
     'HELP_SHOP_THEME_sGoogleMapsAddr'               => 'Bsp.: OXID eSales AG, Bertoldstraße 48, 79098 Freiburg‎',
 
-    'SHOP_THEME_bl_showManufacturer'          => 'Hersteller auf Startseite anzeigen‎',
+    'SHOP_THEME_bl_showManufacturer'                => 'Hersteller auf Startseite anzeigen‎',
+
+    'SHOP_THEME_bl_articleAmountMax'                => 'Maximal Menge eines Artikels bestellbar <= Lagerbestand',
+    'HELP_SHOP_THEME_bl_articleAmountMax'           => 'Die maximal Menge eines Artikels, die bestell werden kann, orientiert sich am Lagerbestand. Wird diese Option deaktiviert, können mehr Artikel bestellt werden, als im Lager vorhanden',
 
     'SHOP_THEME_blUseGAPageTracker'                 => 'Google Analytics PageTracker benutzen',
     'SHOP_THEME_blUseGAEcommerceTracking'           => 'Google Analytics Ecommerce Tracking benutzen',

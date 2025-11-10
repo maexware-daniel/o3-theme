@@ -110,18 +110,6 @@ $aTheme = array(
         ),
         array(
             'group' => 'footer',
-            'name'  => 'blFooterShowLinks',
-            'type'  => 'bool',
-            'value' => 1,
-        ),
-        array(
-            'group' => 'footer',
-            'name'  => 'blFooterShowNews',
-            'type'  => 'bool',
-            'value' => 1,
-        ),
-        array(
-            'group' => 'footer',
             'name'  => 'blFooterShowNewsletter',
             'type'  => 'bool',
             'value' => 1,
@@ -149,6 +137,12 @@ $aTheme = array(
             'name'  => 'blShowFilters',
             'type'  => 'bool',
             'value' => 1,
+        ),
+        array(
+            'group' => 'display',
+            'name'  => 'blShowFiltersSearch',
+            'type'  => 'str',
+            'value' => 10,
         ),
         array(
             'group' => 'googleanalytics',
@@ -197,7 +191,7 @@ $aTheme = array(
             'name'        => 'sDefaultListDisplayType',
             'type'        => 'select',
             'value'       => 'grid',
-            'constraints' => 'grid',
+            'constraints' => 'grid|line',
         ),
         array(
             'group' => 'slider',

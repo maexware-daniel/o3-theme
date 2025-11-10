@@ -3,6 +3,7 @@
     [{assign var="blDisableToCart" value=$oView->getDisableToCart()}]
     [{assign var="iIndex"          value=$oView->getIndex()}]
     [{assign var="showMainLink"    value=$oView->getShowMainLink()}]
+    [{assign var="oConfig"         value=$oViewConf->getConfig()}]
 
     [{assign var="currency" value=$oView->getActCurrency()}]
     [{if $showMainLink}]
@@ -23,6 +24,8 @@
         [{assign var=listId value=$oView->getViewParameter('listId')}]
     [{/if}]
 
+    [{* YOU NEED THIS IF: Should items in listing be able to be added to the shopping cart? *}]
+    [{*
     <form name="tobasket[{$testid}]" [{if $blShowToBasket}]action="[{$oViewConf->getSelfActionLink()}]" method="post"[{else}]action="[{$_productLink}]" method="get"[{/if}]>
         <div class="d-none">
             [{$oViewConf->getNavFormParams()}]
@@ -55,6 +58,7 @@
                 <input type="hidden" name="anid" value="[{$product->oxarticles__oxnid->value}]">
             [{/if}]
         </div>
+    *}]
 
         [{if !$removeFunction}]
 
@@ -85,7 +89,7 @@
         [{/if}]
 
         [{block name="widget_product_listitem_infogrid_gridpicture"}]
-            <a class="component__productbox-picture" href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
+            <a class="component__productbox-picture mb-4" href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
                 <img loading="lazy" src="[{$product->getThumbnailUrl()}]" alt="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
             </a>
         [{/block}]
@@ -97,7 +101,13 @@
             </a>
         [{/block}]
 
-        <div class="component__productbox-price">
+        [{if $oConfig->getConfigParam('bl_perfLoadReviews')}]
+            [{block name="widget_product_listitem_grid_ratings"}]
+                [{include file="widget/reviews/rating.tpl" iRatingValue=$product->oxarticles__oxrating->value id=$product->oxarticles__oxid->value sView="listing"}]
+            [{/block}]
+        [{/if}]
+
+        <div class="component__productbox-price mt-2">
             [{block name="widget_product_listitem_grid_price"}]
                 [{oxhasrights ident="SHOWARTICLEPRICE"}]
                     [{assign var="oUnitPrice" value=$product->getUnitPrice()}]
@@ -148,8 +158,9 @@
         </div>
 
         [{block name="widget_product_listitem_grid_tobasket"}][{/block}]
-
+    [{*
     </form>
+    *}]
 
     [{if $removeFunction && (($owishid && ($owishid==$oxcmp_user->oxuser__oxid->value)) || (($wishid==$oxcmp_user->oxuser__oxid->value)) || $recommid)}]
         <form action="[{$oViewConf->getSelfActionLink()}]" method="post" id="remove_[{$removeFunction}][{$testid}]" class="d-none">

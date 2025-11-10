@@ -111,6 +111,7 @@ $aLang = [
     // List views
     'DD_LISTLOCATOR_FILTER_ATTRIBUTES'                      => 'Filter',
     'DD_LIST_SHOW_MORE'                                     => 'View products',
+    'O3_LESS'                                               => 'Weniger',
 
     // Recommendation list
     'DD_RECOMMENDATION_EDIT_BACK_TO_LIST'                   => 'back to overview',

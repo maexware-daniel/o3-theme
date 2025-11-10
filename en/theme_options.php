@@ -80,6 +80,9 @@ $aLang = array(
     'SHOP_THEME_bl_showCompareList'                 => 'Use compare list', //SHOP_CONFIG_SHOWCOMPARELIST
     'SHOP_THEME_bl_showListmania'                   => 'Use listmania', //SHOP_CONFIG_SHOWLISTMANIA
     'SHOP_THEME_blShowBirthdayFields'               => 'Display input fields for date of birth when users enter their personal data', //SHOP_CONFIG_SHOWBIRTHDAYFIELDS
+    'SHOP_THEME_blShowFilters'                      => 'Show filters expanded',
+    'SHOP_THEME_blShowFiltersSearch'                => 'Maximum number of filter values (before More button)',
+    'HELP_SHOP_THEME_blShowFiltersSearch'           => 'If this value exceeds the number of possible filter values, the remaining filter values are hidden but can be expanded using a button below. A search for this filter is also displayed.',
 
     'SHOP_THEME_blPrimaryColor'                     => 'Primarycolor',
     'SHOP_THEME_blSecondaryColor'                   => 'Secondarycolor',
@@ -130,6 +133,9 @@ $aLang = array(
     'HELP_SHOP_THEME_sGoogleMapsAddr'               => 'E.g.: OXID eSales AG, Bertoldstraße 48, 79098 Freiburg',
 
     'SHOP_THEME_bl_showManufacturer'          => 'Show manufacturers on Start page',
+
+    'SHOP_THEME_bl_articleAmountMax'                => 'Maximal Menge eines Artikels bestellbar <= Lagerbestand',
+    'HELP_SHOP_THEME_bl_articleAmountMax'           => 'Die maximal Menge eines Artikels, die bestell werden kann, orientiert sich am Lagerbestand. Wird diese Option deaktiviert, können mehr Artikel bestellt werden, als im Lager vorhanden',
 
     'SHOP_THEME_blUseGAPageTracker'                 => 'Use Google Analytics PageTracker',
     'SHOP_THEME_blUseGAEcommerceTracking'           => 'Use Google Analytics Ecommerce Tracking',

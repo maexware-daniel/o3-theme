@@ -6,7 +6,7 @@
         [{assign var="_sortColumnVarName" value=$oView->getSortOrderByParameterName()}]
         [{assign var="_sortDirectionVarName" value=$oView->getSortOrderParameterName()}]
 
-        <div class="dropdown">
+        <div class="alist__orga-sort dropdown">
             <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 [{if $oView->getListOrderBy()}]
                     [{oxmultilang ident=$oView->getListOrderBy()|upper }]
