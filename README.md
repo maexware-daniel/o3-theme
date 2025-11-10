@@ -238,3 +238,8 @@ safelist: [
 The PayPal module checks the active theme ID in one of its templates:
 ``[{if $oViewConf->getActiveTheme()=='flow'}]`` 
 Change ``'flow'`` to ``'o3-theme'`` for compatibility.
+
+
+## 8. Issues
+
+Please forward all issues to https://issues.o3-shop.com/ for the project **O3 Theme**.

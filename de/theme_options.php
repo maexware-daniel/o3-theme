@@ -118,8 +118,8 @@ $aLang = array(
 
     'SHOP_THEME_sFacebookUrl'                       => 'Facebook Seiten-URL',
     'HELP_SHOP_THEME_sFacebookUrl'                  => 'Bsp.: https://www.facebook.com/oxidesales',
-    'SHOP_THEME_sTwitterUrl'                        => 'Twitter Profil-URL',
-    'HELP_SHOP_THEME_sTwitterUrl'                   => 'Bsp.: https://twitter.com/OXID_eSales',
+    'SHOP_THEME_sXUrl'                              => 'X (ehemals Twitter) Profil-URL',
+    'HELP_SHOP_THEME_sXUrl'                         => 'Bsp.: https://x.com/OXID_eSales',
     'SHOP_THEME_sYouTubeUrl'                        => 'YouTube Kanal-URL',
     'HELP_SHOP_THEME_sYouTubeUrl'                   => 'Bsp.: https://www.youtube.com/user/oxidesales‎',
     'SHOP_THEME_sInstagramUrl'                      => 'Instagram Seiten-URL',

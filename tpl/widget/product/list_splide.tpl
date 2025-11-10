@@ -15,7 +15,7 @@
 
     [{if $products && !empty($products)}]
 
-        <div class="component__productslider-[{$listId}] splide" data-js="productslider" data-id="[{$listId}]" data-splide='{
+        <div class="component__productslider-[{$listId}] splide" data-list-id="[{$listId}]" data-splide='{
                                 "mediaQuery": "min",
                                 "perMove":1,
                                 "breakpoints":{
@@ -67,14 +67,6 @@
                 <div class="splide__progress-bar"></div>
             </div>
         </div>
-        [{*
-        [{oxscript add="
-            //Artikel-Slider ohne Status-Bar
-            new Splide('.component__productslider-`$listId`').mount();
-        "}]
-        *}]
-
-        [{oxscript add="initProductSlider('`$listId`');"}]
 
     [{/if}]
 

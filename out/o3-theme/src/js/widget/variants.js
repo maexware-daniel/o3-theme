@@ -36,10 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 // Cross-Selling-Slider neu initialisieren, falls vorhanden
-                document.querySelectorAll('[data-js="productslider"]').forEach(slider => {
-                    const listId = slider.getAttribute('data-id');
-                    initProductSlider(listId);
-                });
+                if (document.querySelector('.component__productslider')) {
+                    initAllProductSliders();
+                }
+
             })
             .catch(error => {
                 console.error('Fetch-Fehler:', error);
