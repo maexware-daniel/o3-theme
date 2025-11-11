@@ -141,6 +141,16 @@
         [{$_block}]
     [{/foreach}]
 
+    [{if $oViewConf->getViewThemeParam('sShowMode')}]
+        <div class="mode__[{$oViewConf->getViewThemeParam('sShowModePosition')}][{if $oxcmp_shop->oxshops__oxproductive->value}] is-prod[{else}] is-dev[{/if}]">
+            [{if $oxcmp_shop->oxshops__oxproductive->value}]
+                ProductiveMode
+            [{else}]
+                DevMode
+            [{/if}]
+        </div>
+    [{/if}]
+
     [{block name="base_js"}]
         [{if $oxcmp_shop->oxshops__oxproductive->value}]
             [{oxscript include="js/main.min.js" priority=1}]

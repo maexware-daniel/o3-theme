@@ -25,6 +25,7 @@
 $aLang = array(
     'charset'                                       => 'UTF-8',
 
+    'SHOP_THEME_GROUP_mode'                         => 'Modus',
     'SHOP_THEME_GROUP_headertopinfo'                => 'Header TopInfo',
     'SHOP_THEME_GROUP_images'                       => 'Bilder',
     'SHOP_THEME_GROUP_features'                     => 'Funktionen',
@@ -43,6 +44,14 @@ $aLang = array(
     'SHOP_THEME_GROUP_emails'                       => 'E-mails',
     'SHOP_THEME_GROUP_slider'                       => 'Banner Start',
     'SHOP_THEME_GROUP_Jquery'                       => 'JQuery',
+
+    'SHOP_THEME_sShowMode'                          => 'Show active Mode in frontend',
+    'HELP_SHOP_THEME_sShowMode'                     => 'Indicates whether the shop is in production mode or development mode. Useful in relation to building styles and scripts.',
+    'SHOP_THEME_sShowModePosition'                  => 'Position of the display',
+    'SHOP_THEME_sShowModePosition_topleft'          => 'top / left',
+    'SHOP_THEME_sShowModePosition_topright'         => 'top / right',
+    'SHOP_THEME_sShowModePosition_bottomleft'       => 'bottom / left',
+    'SHOP_THEME_sShowModePosition_bottomright'      => 'bottom / right',
 
     'SHOP_THEME_sIconsize'                          => 'Icon size (width*height)', //SHOP_CONFIG_ICONSIZE
     'HELP_SHOP_THEME_sIconsize'                     => 'Icons are the smallest pictures of a product. They are used: <br>' .
