@@ -24,6 +24,7 @@
 $aLang = array(
     'charset'                                       => 'UTF-8',
 
+    'SHOP_THEME_GROUP_mode'                         => 'Modus',
     'SHOP_THEME_GROUP_headertopinfo'                => 'Header TopInfo',
     'SHOP_THEME_GROUP_images'                       => 'Bilder',
     'SHOP_THEME_GROUP_features'                     => 'Funktionen',
@@ -42,6 +43,14 @@ $aLang = array(
     'SHOP_THEME_GROUP_emails'                       => 'E-Mails',
     'SHOP_THEME_GROUP_slider'                       => 'Banner Start',
     'SHOP_THEME_GROUP_Jquery'                       => 'JQuery',
+
+    'SHOP_THEME_sShowMode'                          => 'Zeige aktiven Modus im Frontend',
+    'HELP_SHOP_THEME_sShowMode'                     => 'Zeigt an ob der Shop im ProduktivModus oder im DevModus ist. Nützlich in bezug auf das Building der Styles und Scripte.',
+    'SHOP_THEME_sShowModePosition'                  => 'Position der Anzeige',
+    'SHOP_THEME_sShowModePosition_topleft'          => 'oben / links',
+    'SHOP_THEME_sShowModePosition_topright'         => 'oben / rechts',
+    'SHOP_THEME_sShowModePosition_bottomleft'       => 'unten / links',
+    'SHOP_THEME_sShowModePosition_bottomright'      => 'unten / rechts',
 
     'SHOP_THEME_sIconsize'                          => 'Größe des Icons in Pixeln (Breite*Höhe)', //SHOP_CONFIG_ICONSIZE
     'HELP_SHOP_THEME_sIconsize'                     => 'Icons sind die kleinsten Bilder eines Artikels. Sie werden z. B. <br>' .

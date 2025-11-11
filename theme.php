@@ -30,6 +30,19 @@ $aTheme = array(
     'author'      => '<a href="https://www.o3-shop.com" title="O3-Shop">O3-Shop</a>',
     'settings'    => array(
         array(
+            'group' => 'mode',
+            'name'  => 'sShowMode',
+            'type'  => 'bool',
+            'value' => 0,
+        ),
+        array(
+            'group' => 'mode',
+            'name'  => 'sShowModePosition',
+            'type'        => 'select',
+            'value'       => 'topleft',
+            'constraints' => 'topleft|topright|bottomleft|bottomright',
+        ),
+        array(
             'group' => 'images',
             'name'  => 'aDetailImageSizes',
             'type'  => 'aarr',

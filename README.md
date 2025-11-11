@@ -163,9 +163,9 @@ Run these commands from the theme root directory:
 gulp dev
 ```
 
-> **💡 Tip:** Disable **Production Mode** in OXID Admin during development to keep source maps and unminified assets.
+> **During development, make sure production-mode is disabled**. Only then will you be able to view the source maps and unminified assets.
 >
-> Master Data → Basic Settings → Basic → Production mode → Off
+> **💡 Tip:** Use the mode-tool, which shows you in the frontend which mode the shop is in. You can activate it in the theme settings.
 
 The watcher monitors:
 - `build/js/**/*.js` → Rebuilds JavaScript bundles
