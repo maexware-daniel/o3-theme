@@ -175,7 +175,7 @@
 
                             [{assign var="tobasket_name" value="aproducts[`$basketindex`][am]"}]
                             [{assign var="getStock" value=$basketitem->getArticle()}]
-                            [{include file="widget/product/tobasket.tpl" blCanBuy=true name=$tobasket_name value=$basketitem->getAmount() max=$getStock->oxarticles__oxstock->value step=1}]
+                            [{include file="widget/product/tobasket.tpl" blCanBuy=true name=$tobasket_name value=$basketitem->getAmount() stockflag=$getStock->oxarticles__oxstockflag->value stock=$getStock->oxarticles__oxstock->value}]
                             [{if $basketitem->oxarticles__oxunitname->value}]
                                 [{$basketitem->oxarticles__oxunitname->value}]
                             [{/if}]

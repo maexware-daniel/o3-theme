@@ -302,7 +302,7 @@
     [{block name="details_productmain_tobasket"}]
         [{oxhasrights ident="TOBASKET"}]
             [{if !$oDetailsProduct->isNotBuyable()}]
-                [{include file="widget/product/tobasket.tpl" blCanBuy=$blCanBuy name="am" value=1 max=$oDetailsProduct->oxarticles__oxstock->value step=1 submit=true}]
+                [{include file="widget/product/tobasket.tpl" blCanBuy=$blCanBuy name="am" value=1 stockflag=$oDetailsProduct->oxarticles__oxstockflag->value stock=$oDetailsProduct->oxarticles__oxstock->value submit=true}]
             [{/if}]
         [{/oxhasrights}]
     [{/block}]

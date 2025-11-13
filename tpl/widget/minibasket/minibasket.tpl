@@ -37,7 +37,7 @@
 
                         [{assign var="tobasket_name" value="aproducts[`$basketindex`][am]"}]
                         [{assign var="getStock" value=$_product->getArticle()}]
-                        [{*include file="widget/product/tobasket.tpl" blCanBuy=true name=$tobasket_name value=$_product->getAmount() max=$getStock->oxarticles__oxstock->value step=1*}]
+                        [{*include file="widget/product/tobasket.tpl" blCanBuy=true name=$tobasket_name value=$_product->getAmount() stockflag=$getStock->oxarticles__oxstockflag->value stock=$getStock->oxarticles__oxstock->value*}]
 
                         <div class="component__basketarticle-price">[{oxprice price=$_product->getPrice() currency=$currency}]</div>
                     </div>

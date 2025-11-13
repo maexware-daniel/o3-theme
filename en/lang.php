@@ -129,6 +129,7 @@ $aLang = [
     'O3_UNIT_PRICE'                                         => 'Unit price',
     'O3_ARTNUM'                                             => 'Art. no.',
     'O3_DETAILS_VARIANTS'                                   => 'Variants',
+    'O3_STOCK_WARNING'                                      => 'Maximum quantity reached – no more items in stock.',
     'DD_RATING_CUSTOMERRATINGS'                             => 'Customer reviews',
     'PAGE_DETAILS_CUSTOMERS_ALSO_BOUGHT_SUBHEADER'          => 'Customers who bought this item also bought one of the following products.',
     'WIDGET_PRODUCT_RELATED_PRODUCTS_ACCESSORIES_SUBHEADER' => 'The following products fit well to this product.',
