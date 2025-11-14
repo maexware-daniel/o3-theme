@@ -382,5 +382,47 @@ $aTheme = array(
             'type'  => 'str',
             'value' => '665*665',
         ),
+        array(
+            'group' => 'form',
+            'name'  => 'iPasswordLength',
+            'type'  => 'str',
+            'value' => '12',
+        ),
+        array(
+            'group' => 'form',
+            'name'  => 'bInputCompany',
+            'type'  => 'bool',
+            'value' => 'false',
+        ),
+        array(
+            'group' => 'form',
+            'name'  => 'bInputUstid',
+            'type'  => 'bool',
+            'value' => 'false',
+        ),
+        array(
+            'group' => 'form',
+            'name'  => 'bInputState',
+            'type'  => 'bool',
+            'value' => 'false',
+        ),
+        array(
+            'group' => 'form',
+            'name'  => 'bInputFax',
+            'type'  => 'bool',
+            'value' => 'false',
+        ),
+        array(
+            'group' => 'form',
+            'name'  => 'bInputMobilePhone',
+            'type'  => 'bool',
+            'value' => 'false',
+        ),
+        array(
+            'group' => 'form',
+            'name'  => 'bInputPrivatPhone',
+            'type'  => 'bool',
+            'value' => 'false',
+        ),
     ),
 );

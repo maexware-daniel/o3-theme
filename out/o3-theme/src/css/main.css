@@ -12548,6 +12548,13 @@ main.backdrop:after {
   --bs-btn-padding-y: 0.1rem;
 }
 
+.btn-input {
+  border: 1px solid #DBDBDB;
+}
+.btn-input:hover {
+  border: 1px solid #DBDBDB;
+}
+
 .btn-toggle {
   justify-content: flex-start;
   width: 100%;
@@ -12663,6 +12670,41 @@ input[type=number] {
 
 .h-max-content {
   height: max-content;
+}
+
+[class^=mode__] {
+  position: fixed;
+  margin: 10px;
+  padding: 6px 10px;
+  color: #fff;
+  z-index: 1000;
+  border-radius: 6px;
+}
+[class^=mode__].is-prod {
+  background-color: green;
+}
+[class^=mode__].is-dev {
+  background-color: red;
+}
+
+.mode__topleft {
+  top: 0;
+  left: 0;
+}
+
+.mode__topright {
+  top: 0;
+  right: 0;
+}
+
+.mode__bottomleft {
+  bottom: 0;
+  left: 0;
+}
+
+.mode__bottomright {
+  bottom: 0;
+  right: 0;
 }
 
 .header__actions-account {
@@ -13102,6 +13144,65 @@ footer a {
     height: 95px;
     gap: unset;
   }
+}
+
+.component__password-bar {
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: #DBDBDB;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+.component__password-bar.is-weak {
+  background: linear-gradient(90deg, #dc3545 0%, #dc3545 33%, #dbdbdb 33%, #dbdbdb 100%);
+}
+.component__password-bar.is-medium {
+  background: linear-gradient(90deg, #ffc107 0%, #ffc107 66%, #dbdbdb 66%, #dbdbdb 100%);
+}
+.component__password-bar.is-strong {
+  background: linear-gradient(90deg, #198754 0%, #198754 100%);
+}
+
+.component__password-label {
+  font-weight: 500;
+}
+.component__password-label.is-weak {
+  color: #dc3545;
+}
+.component__password-label.is-medium {
+  color: #ffc107;
+}
+.component__password-label.is-strong {
+  color: #198754;
+}
+
+.component__password-requirement .rounded-circle {
+  width: 18px;
+  height: 18px;
+  font-size: 11px;
+  line-height: 1;
+  position: relative;
+  color: #198754;
+}
+.component__password-requirement.is-met .rounded-circle {
+  background: #198754;
+  border-color: #198754;
+  color: #fff;
+}
+.component__password-requirement.is-met .rounded-circle::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.btn[data-js=toggle-password] svg:nth-child(2) {
+  display: none;
 }
 
 .publish-list .btn {

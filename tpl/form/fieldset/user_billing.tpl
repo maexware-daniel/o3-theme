@@ -56,14 +56,16 @@
     [{include file="message/inputvalidation.tpl" aErrors=$aErrors.oxuser__oxlname}]
 </div>
 
-<div class="form-floating mb-3">
-    <input type="text" class="form-control" id="invadr_oxuser__oxcompany" name="invadr[oxuser__oxcompany]" value="[{if isset( $invadr.oxuser__oxcompany )}][{$invadr.oxuser__oxcompany}][{else}][{$oxcmp_user->oxuser__oxcompany->value}][{/if}]" maxlength="255" placeholder="[{oxmultilang ident="COMPANY"}][{if $oView->isFieldRequired(oxuser__oxcompany)}]*[{/if}]"[{if $oView->isFieldRequired(oxuser__oxcompany)}] required[{/if}] autocomplete="billing organization">
-    <label for="invadr_oxuser__oxcompany">[{oxmultilang ident="COMPANY"}][{if $oView->isFieldRequired(oxuser__oxcompany)}]*[{/if}]</label>
-    <div class="invalid-feedback">
-        [{oxmultilang ident="DD_FORM_VALIDATION_COMPANY"}]
+[{if $oViewConf->getViewThemeParam('bInputCompany') || $oView->isFieldRequired(oxuser__oxcompany)}]
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="invadr_oxuser__oxcompany" name="invadr[oxuser__oxcompany]" value="[{if isset( $invadr.oxuser__oxcompany )}][{$invadr.oxuser__oxcompany}][{else}][{$oxcmp_user->oxuser__oxcompany->value}][{/if}]" maxlength="255" placeholder="[{oxmultilang ident="COMPANY"}][{if $oView->isFieldRequired(oxuser__oxcompany)}]*[{/if}]"[{if $oView->isFieldRequired(oxuser__oxcompany)}] required[{/if}] autocomplete="billing organization">
+        <label for="invadr_oxuser__oxcompany">[{oxmultilang ident="COMPANY"}][{if $oView->isFieldRequired(oxuser__oxcompany)}]*[{/if}]</label>
+        <div class="invalid-feedback">
+            [{oxmultilang ident="DD_FORM_VALIDATION_COMPANY"}]
+        </div>
+        [{include file="message/inputvalidation.tpl" aErrors=$aErrors.oxuser__oxcompany}]
     </div>
-    [{include file="message/inputvalidation.tpl" aErrors=$aErrors.oxuser__oxcompany}]
-</div>
+[{/if}]
 
 <div class="form-floating mb-3">
     <input type="text" class="form-control" id="invadr_oxuser__oxaddinfo" name="invadr[oxuser__oxaddinfo]" value="[{if isset( $invadr.oxuser__oxaddinfo )}][{$invadr.oxuser__oxaddinfo}][{else}][{$oxcmp_user->oxuser__oxaddinfo->value}][{/if}]" maxlength="255" placeholder="[{oxmultilang ident="ADDITIONAL_INFO"}][{if $oView->isFieldRequired(oxuser__oxaddinfo)}]*[{/if}]"[{if $oView->isFieldRequired(oxuser__oxaddinfo)}] required[{/if}]>
@@ -112,14 +114,16 @@
     </div>
 </div>
 
-<div class="form-floating mb-3">
-    <input type="text" class="form-control" id="invadr_oxuser__oxustid" name="invadr[oxuser__oxustid]" value="[{if isset( $invadr.oxuser__oxustid )}][{$invadr.oxuser__oxustid}][{else}][{$oxcmp_user->oxuser__oxustid->value}][{/if}]" maxlength="255" placeholder="[{oxmultilang ident="VAT_ID_NUMBER"}][{if $oView->isFieldRequired(oxuser__oxustid)}]*[{/if}]"[{if $oView->isFieldRequired(oxuser__oxustid)}] required[{/if}]>
-    <label for="invadr_oxuser__oxustid">[{oxmultilang ident="VAT_ID_NUMBER"}][{if $oView->isFieldRequired(oxuser__oxustid)}]*[{/if}]</label>
-    <div class="invalid-feedback">
-        [{oxmultilang ident="DD_FORM_VALIDATION_VAT_ID_NUMBER"}]
+[{if $oViewConf->getViewThemeParam('bInputUstid') || $oView->isFieldRequired(oxuser__oxustid)}]
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="invadr_oxuser__oxustid" name="invadr[oxuser__oxustid]" value="[{if isset( $invadr.oxuser__oxustid )}][{$invadr.oxuser__oxustid}][{else}][{$oxcmp_user->oxuser__oxustid->value}][{/if}]" maxlength="255" placeholder="[{oxmultilang ident="VAT_ID_NUMBER"}][{if $oView->isFieldRequired(oxuser__oxustid)}]*[{/if}]"[{if $oView->isFieldRequired(oxuser__oxustid)}] required[{/if}]>
+        <label for="invadr_oxuser__oxustid">[{oxmultilang ident="VAT_ID_NUMBER"}][{if $oView->isFieldRequired(oxuser__oxustid)}]*[{/if}]</label>
+        <div class="invalid-feedback">
+            [{oxmultilang ident="DD_FORM_VALIDATION_VAT_ID_NUMBER"}]
+        </div>
+        [{include file="message/inputvalidation.tpl" aErrors=$aErrors.oxuser__oxustid}]
     </div>
-    [{include file="message/inputvalidation.tpl" aErrors=$aErrors.oxuser__oxustid}]
-</div>
+[{/if}]
 
 [{block name="form_user_billing_country"}]
     <div class="form-floating mb-3">
@@ -145,20 +149,22 @@
         [{include file="message/inputvalidation.tpl" aErrors=$aErrors.oxuser__oxcountryid}]
     </div>
 
-    <div class="form-floating mb-3">
-        [{include file="form/fieldset/state.tpl"
-        countrySelectId="invCountrySelect"
-        stateSelectName="invadr[oxuser__oxstateid]"
-        selectedStateIdPrim=$invadr.oxuser__oxstateid
-        selectedStateId=$oxcmp_user->oxuser__oxstateid->value
-        class="form-select"
-        id="invadr_oxuser__oxstateid"
-        }]
-        <label for="invadr_oxuser__oxstateid">[{oxmultilang ident="DD_USER_LABEL_STATE"}][{if $oView->isFieldRequired(oxuser__oxstateid)}]*[{/if}]</label>
-        <div class="invalid-feedback">
-            [{oxmultilang ident="DD_FORM_VALIDATION_STATE"}]
+    [{if $oViewConf->getViewThemeParam('bInputState') || $oView->isFieldRequired(oxuser__oxstateid)}]
+        <div class="form-floating mb-3">
+            [{include file="form/fieldset/state.tpl"
+            countrySelectId="invCountrySelect"
+            stateSelectName="invadr[oxuser__oxstateid]"
+            selectedStateIdPrim=$invadr.oxuser__oxstateid
+            selectedStateId=$oxcmp_user->oxuser__oxstateid->value
+            class="form-select"
+            id="invadr_oxuser__oxstateid"
+            }]
+            <label for="invadr_oxuser__oxstateid">[{oxmultilang ident="DD_USER_LABEL_STATE"}][{if $oView->isFieldRequired(oxuser__oxstateid)}]*[{/if}]</label>
+            <div class="invalid-feedback">
+                [{oxmultilang ident="DD_FORM_VALIDATION_STATE"}]
+            </div>
         </div>
-    </div>
+    [{/if}]
 [{/block}]
 
 <div class="form-floating mb-3">
@@ -170,32 +176,38 @@
     [{include file="message/inputvalidation.tpl" aErrors=$aErrors.oxuser__oxfon}]
 </div>
 
-<div class="form-floating mb-3">
-    <input type="text" class="form-control" id="invadr_oxuser__oxfax" name="invadr[oxuser__oxfax]" value="[{if isset( $invadr.oxuser__oxfax )}][{$invadr.oxuser__oxfax}][{else}][{$oxcmp_user->oxuser__oxfax->value}][{/if}]" maxlength="128" placeholder="[{oxmultilang ident="FAX"}][{if $oView->isFieldRequired(oxuser__oxfax)}]*[{/if}]"[{if $oView->isFieldRequired(oxuser__oxfax)}] required[{/if}] autocomplete="billing fax">
-    <label for="invadr_oxuser__oxfax">[{oxmultilang ident="FAX"}][{if $oView->isFieldRequired(oxuser__oxfax)}]*[{/if}]</label>
-    <div class="invalid-feedback">
-        [{oxmultilang ident="DD_FORM_VALIDATION_FAX"}]
+[{if $oViewConf->getViewThemeParam('bInputFax') || $oView->isFieldRequired(oxuser__oxfax)}]
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="invadr_oxuser__oxfax" name="invadr[oxuser__oxfax]" value="[{if isset( $invadr.oxuser__oxfax )}][{$invadr.oxuser__oxfax}][{else}][{$oxcmp_user->oxuser__oxfax->value}][{/if}]" maxlength="128" placeholder="[{oxmultilang ident="FAX"}][{if $oView->isFieldRequired(oxuser__oxfax)}]*[{/if}]"[{if $oView->isFieldRequired(oxuser__oxfax)}] required[{/if}] autocomplete="billing fax">
+        <label for="invadr_oxuser__oxfax">[{oxmultilang ident="FAX"}][{if $oView->isFieldRequired(oxuser__oxfax)}]*[{/if}]</label>
+        <div class="invalid-feedback">
+            [{oxmultilang ident="DD_FORM_VALIDATION_FAX"}]
+        </div>
+        [{include file="message/inputvalidation.tpl" aErrors=$aErrors.oxuser__oxfax}]
     </div>
-    [{include file="message/inputvalidation.tpl" aErrors=$aErrors.oxuser__oxfax}]
-</div>
+[{/if}]
 
-<div class="form-floating mb-3">
-    <input type="text" class="form-control" id="invadr_oxuser__oxmobfon" name="invadr[oxuser__oxmobfon]" value="[{if isset( $invadr.oxuser__oxmobfon )}][{$invadr.oxuser__oxmobfon}][{else}][{$oxcmp_user->oxuser__oxmobfon->value}][{/if}]" maxlength="64" placeholder="[{oxmultilang ident="CELLUAR_PHONE"}][{if $oView->isFieldRequired(oxuser__oxmobfon)}]*[{/if}]"[{if $oView->isFieldRequired(oxuser__oxmobfon)}] required[{/if}]>
-    <label for="invadr_oxuser__oxfon">[{oxmultilang ident="CELLUAR_PHONE"}][{if $oView->isFieldRequired(oxuser__oxmobfon)}]*[{/if}]</label>
-    <div class="invalid-feedback">
-        [{oxmultilang ident="DD_FORM_VALIDATION_CELLUAR_PHONE"}]
+[{if $oViewConf->getViewThemeParam('bInputMobilePhone') || $oView->isFieldRequired(oxuser__oxmobfon)}]
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="invadr_oxuser__oxmobfon" name="invadr[oxuser__oxmobfon]" value="[{if isset( $invadr.oxuser__oxmobfon )}][{$invadr.oxuser__oxmobfon}][{else}][{$oxcmp_user->oxuser__oxmobfon->value}][{/if}]" maxlength="64" placeholder="[{oxmultilang ident="CELLUAR_PHONE"}][{if $oView->isFieldRequired(oxuser__oxmobfon)}]*[{/if}]"[{if $oView->isFieldRequired(oxuser__oxmobfon)}] required[{/if}]>
+        <label for="invadr_oxuser__oxfon">[{oxmultilang ident="CELLUAR_PHONE"}][{if $oView->isFieldRequired(oxuser__oxmobfon)}]*[{/if}]</label>
+        <div class="invalid-feedback">
+            [{oxmultilang ident="DD_FORM_VALIDATION_CELLUAR_PHONE"}]
+        </div>
+        [{include file="message/inputvalidation.tpl" aErrors=$aErrors.oxuser__oxmobfon}]
     </div>
-    [{include file="message/inputvalidation.tpl" aErrors=$aErrors.oxuser__oxmobfon}]
-</div>
+[{/if}]
 
-<div class="form-floating mb-3">
-    <input type="text" class="form-control" id="invadr_oxuser__oxprivfon" name="invadr[oxuser__oxprivfon]" value="[{if isset( $invadr.oxuser__oxprivfon )}][{$invadr.oxuser__oxprivfon}][{else}][{$oxcmp_user->oxuser__oxprivfon->value}][{/if}]" maxlength="64" placeholder="[{oxmultilang ident="PERSONAL_PHONE"}][{if $oView->isFieldRequired(oxuser__oxprivfon)}]*[{/if}]"[{if $oView->isFieldRequired(oxuser__oxprivfon)}] required[{/if}]>
-    <label for="invadr_oxuser__oxprivfon">[{oxmultilang ident="PERSONAL_PHONE"}][{if $oView->isFieldRequired(oxuser__oxprivfon)}]*[{/if}]</label>
-    <div class="invalid-feedback">
-        [{oxmultilang ident="DD_FORM_VALIDATION_PERSONAL_PHONE"}]
+[{if $oViewConf->getViewThemeParam('bInputPrivatPhone') || $oView->isFieldRequired(oxuser__oxprivfon)}]
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="invadr_oxuser__oxprivfon" name="invadr[oxuser__oxprivfon]" value="[{if isset( $invadr.oxuser__oxprivfon )}][{$invadr.oxuser__oxprivfon}][{else}][{$oxcmp_user->oxuser__oxprivfon->value}][{/if}]" maxlength="64" placeholder="[{oxmultilang ident="PERSONAL_PHONE"}][{if $oView->isFieldRequired(oxuser__oxprivfon)}]*[{/if}]"[{if $oView->isFieldRequired(oxuser__oxprivfon)}] required[{/if}]>
+        <label for="invadr_oxuser__oxprivfon">[{oxmultilang ident="PERSONAL_PHONE"}][{if $oView->isFieldRequired(oxuser__oxprivfon)}]*[{/if}]</label>
+        <div class="invalid-feedback">
+            [{oxmultilang ident="DD_FORM_VALIDATION_PERSONAL_PHONE"}]
+        </div>
+        [{include file="message/inputvalidation.tpl" aErrors=$aErrors.oxuser__oxprivfon}]
     </div>
-    [{include file="message/inputvalidation.tpl" aErrors=$aErrors.oxuser__oxprivfon}]
-</div>
+[{/if}]
 
 [{block name="form_user_billing_birthdate"}]
     [{if $oViewConf->showBirthdayFields()}]

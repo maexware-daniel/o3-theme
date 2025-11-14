@@ -105,6 +105,14 @@ main {
     --bs-btn-padding-y: 0.1rem;
 }
 
+.btn-input {
+	border: 1px solid $input-border-color;
+
+	&:hover {
+		border: 1px solid $input-border-color;
+	}
+}
+
 .btn-toggle {
     justify-content: flex-start;
     width: 100%;
