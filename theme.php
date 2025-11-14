@@ -104,12 +104,6 @@ $aTheme = array(
             'value' => 1,
         ),
         array(
-            'group' => 'article',
-            'name'  => 'bl_articleAmountMax',
-            'type'  => 'bool',
-            'value' => 1,
-        ),
-        array(
             'group' => 'emails',
             'name'  => 'blEmailsShowProductPictures',
             'type'  => 'bool',

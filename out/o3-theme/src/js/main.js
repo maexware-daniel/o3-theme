@@ -7139,7 +7139,7 @@
   });
 
   // build/js/tobasket.js
-  function updateButtons(inputField, minusButton, plusButton) {
+  function updateButtons(inputField, minusButton, plusButton, warningBox) {
     const currentValue = parseFloat(inputField.value);
     const min2 = parseFloat(inputField.getAttribute("min")) || 1;
     const max2 = parseFloat(inputField.getAttribute("max")) || Infinity;
@@ -7150,19 +7150,29 @@
     }
     if (currentValue >= max2) {
       plusButton.setAttribute("disabled", "disabled");
+      if (warningBox) warningBox.classList.remove("d-none");
     } else {
       plusButton.removeAttribute("disabled");
+      if (warningBox) warningBox.classList.add("d-none");
     }
   }
   function modifyValue(inputField, change) {
     let currentValue = parseFloat(inputField.value);
-    const step = inputField.getAttribute("step") === "any" ? 1 : parseFloat(inputField.getAttribute("step")) || 1;
-    let newValue = currentValue + change * step;
     const min2 = parseFloat(inputField.getAttribute("min")) || 1;
     const max2 = parseFloat(inputField.getAttribute("max")) || Infinity;
+    let newValue;
+    if (currentValue % 1 !== 0) {
+      if (change > 0) {
+        newValue = Math.ceil(currentValue);
+      } else {
+        newValue = Math.floor(currentValue);
+      }
+    } else {
+      newValue = currentValue + change;
+    }
     newValue = Math.max(newValue, min2);
     newValue = Math.min(newValue, max2);
-    inputField.value = newValue.toFixed(step === 1 ? 0 : 1);
+    inputField.value = Math.round(newValue);
   }
   var submitTimeout;
   function scheduleSubmit(form) {
@@ -7178,22 +7188,57 @@
     const plusButton = basket.querySelector('[data-js="tobasket-plus"]');
     const inputField = basket.querySelector('[data-js="tobasket-input"]');
     const form = basket.closest('form[data-js="tobasket-change"]');
+    const warningBox = basket.querySelector('[data-js="stock-warning"]');
     minusButton.addEventListener("click", function() {
       modifyValue(inputField, -1);
-      updateButtons(inputField, minusButton, plusButton);
+      updateButtons(inputField, minusButton, plusButton, warningBox);
       scheduleSubmit(form);
     });
     plusButton.addEventListener("click", function() {
       modifyValue(inputField, 1);
-      updateButtons(inputField, minusButton, plusButton);
+      updateButtons(inputField, minusButton, plusButton, warningBox);
       scheduleSubmit(form);
     });
     inputField.addEventListener("input", function() {
-      const value = parseFloat(inputField.value);
-      if (isNaN(value)) {
-        inputField.value = 1;
+      const rawValue = inputField.value;
+      if (rawValue === "" || rawValue === "." || rawValue === ",") {
+        return;
       }
-      updateButtons(inputField, minusButton, plusButton);
+      const normalizedValue = rawValue.replace(",", ".");
+      let value = parseFloat(normalizedValue);
+      const min2 = parseFloat(inputField.getAttribute("min")) || 1;
+      const max2 = parseFloat(inputField.getAttribute("max")) || Infinity;
+      const allowDecimal = inputField.getAttribute("data-allow-decimal") === "true";
+      if (normalizedValue.endsWith(".") || normalizedValue.endsWith(",")) {
+        if (!isNaN(value)) {
+          updateButtons(inputField, minusButton, plusButton, warningBox);
+        }
+        return;
+      }
+      if (isNaN(value)) {
+        value = min2;
+        inputField.value = value;
+        updateButtons(inputField, minusButton, plusButton, warningBox);
+        scheduleSubmit(form);
+        return;
+      }
+      let needsUpdate = false;
+      if (value < min2) {
+        value = min2;
+        needsUpdate = true;
+      }
+      if (value > max2) {
+        value = max2;
+        needsUpdate = true;
+      }
+      if (!allowDecimal && value !== Math.round(value)) {
+        value = Math.round(value);
+        needsUpdate = true;
+      }
+      if (needsUpdate) {
+        inputField.value = value;
+      }
+      updateButtons(inputField, minusButton, plusButton, warningBox);
       scheduleSubmit(form);
     });
   });
