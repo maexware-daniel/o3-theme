@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const confirmPassword = form.querySelector('#userPasswordConfirm');
 
         // ==========================================
-        // PASSWORT-SPEZIFISCHE VALIDIERUNG (NEU)
+        // PASSWORD-SPECIFIC VALIDATION
         // ==========================================
 
-        const passwordLengthInput = document.getElementById('passwordLength');
+        const passwordLengthInput = document.querySelector('[data-js="password-length"]');
         const minLength = passwordLengthInput ? parseInt(passwordLengthInput.value, 10) : 12;
 
-        // Elemente für Password-Validierung
+        // Elements for password validation
         const passwordBar = form.querySelector('.component__password-bar');
         const passwordLabel = form.querySelector('.component__password-label');
         const requirements = form.querySelectorAll('.component__password-requirement');
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Password Toggle Buttons
         const toggleButtons = form.querySelectorAll('[data-js="toggle-password"]');
 
-        // Password Toggle Funktionalität
+        // Password toggle functionality
         toggleButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const targetId = button.getAttribute('data-target');
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Passwort-Kriterien prüfen
+        // Check password criteria
         const checkPasswordRequirements = (value) => {
             const checks = {
                 length: value.length >= minLength,
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let metCount = 0;
 
-            // Anforderungen aktualisieren
+            // Update requirements
             requirements.forEach(req => {
                 const reqType = req.getAttribute('data-req');
                 if (checks[reqType]) {
@@ -69,9 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return { checks, metCount };
         };
 
-        // Passwort-Stärke aktualisieren
+        // Update password strength
         const updatePasswordStrength = (metCount) => {
-            // Alle Klassen entfernen
+
             passwordBar.classList.remove('is-weak', 'is-medium', 'is-strong');
             passwordLabel.classList.remove('is-weak', 'is-medium', 'is-strong');
 
@@ -81,15 +81,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (metCount === 0) {
                 labelText = '';
             } else if (metCount < 4) {
-                // Weniger als 4 von 5 Kriterien = Schwach
+                // Less than 4 out of 5 criteria = Weak
                 strengthClass = 'is-weak';
                 labelText = passwordLabel.getAttribute('data-label-weak') || 'Schwach';
             } else if (metCount === 4) {
-                // Genau 4 von 5 Kriterien = Mittel
+                // Exactly 4 out of 5 criteria = Average
                 strengthClass = 'is-medium';
                 labelText = passwordLabel.getAttribute('data-label-medium') || 'Mittel';
             } else {
-                // Alle 5 Kriterien erfüllt = Stark
+                // All 5 criteria met = Strong
                 strengthClass = 'is-strong';
                 labelText = passwordLabel.getAttribute('data-label-strong') || 'Stark';
             }
@@ -103,10 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
             passwordBar.setAttribute('aria-valuenow', metCount);
         };
 
-        // Custom Validity für Passwort-Anforderungen
+        // Custom Validity for Password Requirements
         const validatePasswordRequirements = (value) => {
             if (!value) {
-                // Leeres Feld - HTML5 required-Attribut übernimmt
+                // Empty field - HTML5 required attribute takes over
                 password.setCustomValidity('');
                 return;
             }
@@ -121,14 +121,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Event Listener für Passwort-Eingabe (nur wenn Elemente vorhanden)
+        // Event listener for password entry (only if elements are present)
         if (password && passwordBar && passwordLabel && requirements.length > 0) {
             password.addEventListener('input', () => {
                 const { metCount } = checkPasswordRequirements(password.value);
                 updatePasswordStrength(metCount);
                 validatePasswordRequirements(password.value);
 
-                // Bestätigungsfeld auch prüfen, falls bereits ausgefüllt
+                // Also check the confirmation field if it has already been filled in.
                 if (confirmPassword && confirmPassword.value) {
                     if (password.value !== confirmPassword.value) {
                         confirmPassword.setCustomValidity(' ');
@@ -140,10 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ==========================================
-        // URSPRÜNGLICHE BOOTSTRAP-VALIDIERUNG
+        // BOOTSTRAP VALIDATION
         // ==========================================
 
-        // Echtzeit-Überprüfung bei Eingabe im Bestätigungsfeld
+        // Real-time verification when entering data in the confirmation field
         if (password && confirmPassword) {
             confirmPassword.addEventListener('input', () => {
                 if (password.value !== confirmPassword.value) {
@@ -154,24 +154,24 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Überprüfung bei Formular-Übermittlung
+        // Verification upon form submission
         form.addEventListener('submit', event => {
 
-            // Passwort-Anforderungen prüfen (nur wenn Passwort-Feld existiert)
+            // Check password requirements (only if password field exists)
             if (password) {
                 validatePasswordRequirements(password.value);
             }
 
-            // Passwort-Übereinstimmung prüfen (nur wenn beide Felder existieren)
+            // Check password match (only if both fields exist)
             if (password && confirmPassword) {
                 if (password.value !== confirmPassword.value) {
-                    confirmPassword.setCustomValidity(' '); // Markiert als ungültig
+                    confirmPassword.setCustomValidity(' '); // Marked as invalid
                 } else {
-                    confirmPassword.setCustomValidity(''); // Setzt als gültig, falls Passwörter übereinstimmen
+                    confirmPassword.setCustomValidity(''); // Set as valid if passwords match
                 }
             }
 
-            // Formular-Validierungsstatus prüfen
+            // Check form validation status
             if (!form.checkValidity()) {
                 event.preventDefault();
                 event.stopPropagation();

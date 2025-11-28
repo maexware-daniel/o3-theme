@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // PASSWORD-SPECIFIC VALIDATION
         // ==========================================
 
-        const passwordLengthInput = document.getElementById('passwordLength');
+        const passwordLengthInput = document.querySelector('[data-js="password-length"]');
         const minLength = passwordLengthInput ? parseInt(passwordLengthInput.value, 10) : 12;
 
         // Elements for password validation

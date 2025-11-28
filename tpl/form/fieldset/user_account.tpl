@@ -10,7 +10,7 @@
 
 <div class="mb-3">
     [{block name="user_account_password"}]
-        <input type="hidden" id="passwordLength" data-js="password-length" value="[{$oViewConf->getPasswordLength()}]">
+        <input type="hidden" data-js="password-length" value="[{$oViewConf->getPasswordLength()}]">
 
         <div class="input-group has-validation">
             <div class="form-floating flex-grow-1">
