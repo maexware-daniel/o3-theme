@@ -26,6 +26,7 @@ $aLang = array(
     'charset'                                       => 'UTF-8',
 
     'SHOP_THEME_GROUP_mode'                         => 'Modus',
+    'SHOP_THEME_GROUP_form'                         => 'Registration',
     'SHOP_THEME_GROUP_headertopinfo'                => 'Header TopInfo',
     'SHOP_THEME_GROUP_images'                       => 'Bilder',
     'SHOP_THEME_GROUP_features'                     => 'Funktionen',
@@ -52,6 +53,14 @@ $aLang = array(
     'SHOP_THEME_sShowModePosition_topright'         => 'top / right',
     'SHOP_THEME_sShowModePosition_bottomleft'       => 'bottom / left',
     'SHOP_THEME_sShowModePosition_bottomright'      => 'bottom / right',
+
+    'SHOP_THEME_bInputCompany'                      => 'Show Company field',
+    'SHOP_THEME_bInputFax'                          => 'Show Fax field',
+    'SHOP_THEME_bInputMobilePhone'                  => 'Show Mobilnumber field',
+    'SHOP_THEME_bInputPrivatPhone'                  => 'Show Privatnumber field',
+    'SHOP_THEME_bInputState'                        => 'Show State field',
+    'SHOP_THEME_bInputUstid'                        => 'Show UstId field',
+    'SHOP_THEME_iPasswordLength'                    => 'Min. Password length',
 
     'SHOP_THEME_sIconsize'                          => 'Icon size (width*height)', //SHOP_CONFIG_ICONSIZE
     'HELP_SHOP_THEME_sIconsize'                     => 'Icons are the smallest pictures of a product. They are used: <br>' .
